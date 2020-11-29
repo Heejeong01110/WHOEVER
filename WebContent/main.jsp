@@ -2,6 +2,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="./css/bootstrap.min.css "/>
+<link rel="stylesheet" href="css/search.css">
+
 <title>게시판</title>
 </head>
 <body>
@@ -36,5 +38,13 @@
 		</nav>
 	<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src = "js/bootstrap.js"></script>
+	
+	<div class="search__container" style="width: 450px; margin: 0 auto; margin-top: 50px">
+    	<p class="search__title">
+        	Go ahead, hover over search
+    	</p>
+    	<input class="search__input" type="text" placeholder="Search">
+	</div>
+	
 </body>
 </html>

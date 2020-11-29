@@ -7,6 +7,9 @@
 <title>게시판</title>
 </head>
 <body>
+	<% 
+		//BbsDAO bbsdao = new BbsDAO();
+	%>
 	<nav class = "navbar navbar-default">
 		<div class = "navbar-header">
 			<button type = "button" class = "navbar-toggle collapsed"
@@ -45,6 +48,5 @@
     	</p>
     	<input class="search__input" type="text" placeholder="Search">
 	</div>
-	
 </body>
 </html>

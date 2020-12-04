@@ -24,7 +24,9 @@
 				//세션 받아오기
 				String loginId = (String) session.getAttribute("sessionId");
 				out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
-			}				
+			}else if(msg.equals("3")){
+				out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");
+			}
 		} else {
 			out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");
 		}

@@ -23,6 +23,24 @@ public class UserDAO {
 		}
 	}
 	
+//	public void allElement() {
+//		String SQL = "SELECT * FROM BBS";
+//		try {
+//			pstmt = conn.prepareStatement(SQL);
+//			pstmt.setString(1, userID);
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				if(rs.getString(1).equals(userPassword))
+//					return 1; // �α��� ����
+//				else
+//					return 0; // �α��� ����(��й�ȣ ����ġ)
+//			}
+//			return -1; // ���̵� �������� ����
+//		} catch(Exception e){
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public int login(String userID, String userPassword) {
 		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
 		try {

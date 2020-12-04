@@ -1,5 +1,4 @@
 <%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8"%>
-<%@ page import = "bbs.BbsDAO"%>
 <html>
 <head>
 <link rel="stylesheet" href="./css/bootstrap.min.css "/>
@@ -8,9 +7,6 @@
 <title>게시판</title>
 </head>
 <body>
-	<% 
-		BbsDAO bbsdao = new BbsDAO();
-	%>
 	<nav class = "navbar navbar-default">
 		<div class = "navbar-header">
 			<button type = "button" class = "navbar-toggle collapsed"
@@ -43,11 +39,59 @@
 	<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src = "js/bootstrap.js"></script>
 	
+	
+	
 	<div class="search__container" style="width: 450px; margin: 0 auto; margin-top: 50px">
     	<p class="search__title">
-        	Go ahead, hover over search
+        	WHO EVER
     	</p>
-    	<input class="search__input" type="text" placeholder="Search">
+    	<form name = "searchBox" action = "mainServlet?cmd=search" method="post">
+    		<select id="searchType" name="searchType">
+    			<option value="title">제목</option>
+    			<option value="type">종류</option>
+    		</select>
+	    	<input class="search__input" type="text" placeholder="Search" name = "searchData">
+	    	<p> <!-- <input type="submit" value = "전송"> -->
+	    </form>
 	</div>
+	
+	<div class = "container" style="width: 50%; margin: 0 auto; margin-top: 50px">
+		<table border = "1">
+		<tr>
+			<th width="100"> bbs_id </th>
+			<th width="100"> bbs_title </th>
+			<th width="100"> bbs_date </th>
+			<th width="100"> bbs_content </th>
+			<th width="100"> bbs_available </th>
+			<th width="100"> bbs_type </th>
+		</tr>
+		<%
+			Bbs bbsvo = new Bbs();
+			ArrayList<Bbs> bbslist = (ArrayList<Bbs>)request.getAttribute("bbslist");
+			if(bbslist!=null) {
+				for(Bbs B: bbslist){
+					out.print("<tr><td>" + B.getBbsID() + "</td>");
+					out.print("<td>" + B.getBbsTitle() + "</td>");
+					out.print("<td>" + B.getBbsDate() + "</td>");
+					out.print("<td>" + B.getBbsContent() + "</td>");
+					out.print("<td>" + B.getBbsAvailable() + "</td>");
+					out.print("<td>" + B.getBbsType() + "</td></tr>\n");
+				}
+			}else {
+				BbsDAO bbsdao = new BbsDAO();
+				bbslist = bbsdao.allElement();
+				for(Bbs B: bbslist){
+					out.print("<tr><td>" + B.getBbsID() + "</td>");
+					out.print("<td>" + B.getBbsTitle() + "</td>");
+					out.print("<td>" + B.getBbsDate() + "</td>");
+					out.print("<td>" + B.getBbsContent() + "</td>");
+					out.print("<td>" + B.getBbsAvailable() + "</td>");
+					out.print("<td>" + B.getBbsType() + "</td></tr>\n");
+				}
+			}
+		%>
+		</table>
+	</div>
+	
 </body>
 </html>

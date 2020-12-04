@@ -1,11 +1,14 @@
 package user;
 
-public class User {
+public class User implements java.io.Serializable {
 	
 	private String userID;
 	private String userPassword;
 	private String userName;
 	private String userEmail;
+	//private String userStudentID;
+	//private String userImage;
+	//private String status_msg;
 	
 	public String getUserID() {
 		return userID;
@@ -31,4 +34,6 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+	
+	
 }

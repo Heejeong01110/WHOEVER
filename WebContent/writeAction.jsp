@@ -7,8 +7,9 @@
 <jsp:setProperty name = "bbs" property = "bbsContent"/>
 <html>
 <head>
-<link rel="stylesheet" href="./css/bootstrap.min.css "/>
+<link rel="stylesheet" href="resources/css/bootstrap.min.css "/>
 <title>게시판</title>
+
 </head>
 <body>
 	<%

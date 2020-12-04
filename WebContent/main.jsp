@@ -1,4 +1,5 @@
 <%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8"%>
+<%@ page import = "bbs.BbsDAO"%>
 <html>
 <head>
 <link rel="stylesheet" href="./css/bootstrap.min.css "/>
@@ -8,7 +9,7 @@
 </head>
 <body>
 	<% 
-		//BbsDAO bbsdao = new BbsDAO();
+		BbsDAO bbsdao = new BbsDAO();
 	%>
 	<nav class = "navbar navbar-default">
 		<div class = "navbar-header">

@@ -14,7 +14,7 @@
 	driver="com.mysql.jdbc.Driver" user="root" password="1234" />
 
 <sql:query dataSource="${dataSource}" var="resultSet">
-   SELECT * FROM USER WHERE USER_ID=? and password=?  
+   SELECT * FROM USER WHERE id=? and password=?  
    <sql:param value="<%=id%>" />
 	<sql:param value="<%=password%>" />
 </sql:query>

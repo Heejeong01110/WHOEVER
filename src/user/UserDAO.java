@@ -36,10 +36,10 @@ public class UserDAO {
              * 이용해야 한다.
              */
             pstmt = conn.prepareStatement(sql.toString());
-            pstmt.setString(1, user.getUserID());
-            pstmt.setString(2, user.getUserPassword());
-            pstmt.setString(3, user.getUserName());
-            pstmt.setString(4, user.getUserEmail());
+            pstmt.setString(2, user.getUserName());
+            pstmt.setString(3, user.getUserID());
+            pstmt.setString(4, user.getUserPassword());
+            pstmt.setString(5, user.getUserEmail());
             
             // 쿼리 실행
             pstmt.executeUpdate();

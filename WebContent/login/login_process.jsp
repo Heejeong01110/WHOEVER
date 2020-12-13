@@ -10,11 +10,11 @@
 %>
 <!-- mysql 아이디, 비밀번호  -->
 <sql:setDataSource var="dataSource"
-	url="jdbc:mysql://localhost:3306/whoever"
-	driver="com.mysql.jdbc.Driver" user="root" password="1234" />
+	url="jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?serverTimezone=UTC"
+	driver="com.mysql.jdbc.Driver" user="whoever" password="Whoever12#" />
 
 <sql:query dataSource="${dataSource}" var="resultSet">
-   SELECT * FROM USER WHERE USER_ID=? and password=?  
+   SELECT * FROM USER WHERE id=? and password=?  
    <sql:param value="<%=id%>" />
 	<sql:param value="<%=password%>" />
 </sql:query>

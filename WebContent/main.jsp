@@ -31,22 +31,26 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<%
+		//세션 받아오기
+		String loginId = (String) session.getAttribute("sessionId");
 		String msg = request.getParameter("msg");
 		
-		if (msg != null) {
+		if (msg != null) { //처음 로그인, 회원가입 
 			if(msg.equals("1")){
 				out.println(" <h2 class='alert alert-danger'>회원가입을 완료했습니다.</h2>");
 			}else if (msg.equals("2")) {
-				//세션 받아오기
-				String loginId = (String) session.getAttribute("sessionId");
 				out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
 			}else if(msg.equals("3")){
 				out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");
 			}
 		} else {
-			out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");
+			if(loginId != null){
+				out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
+			}else{
+				out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");				
+			}
 		}
-%>
+	%>
 	
 	<a href="#"> <!-- 클릭 시 링크 설정 -->
 		<div class="bbs">
@@ -56,7 +60,6 @@
 					<div class="bbs-header-text">모집중</div>
 					<div class="bbs-header-number">2 / 5</div>
 				</div>
-
 			</div>
 			<!--  카드 바디 -->
 

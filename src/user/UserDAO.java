@@ -14,53 +14,55 @@ public class UserDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public UserDAO() {
-		try {
-			String dbURL = "jdbc:mysql://localhost:3306/BBS";
-			String dbID = "park";
-			String dbPassword = "lp950528";
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
-		}catch(Exception e) {
-			e.printStackTrace();	
-		}
-	}
-	
-//	public void allElement() {
-//		String SQL = "SELECT * FROM BBS";
-//		try {
-//			pstmt = conn.prepareStatement(SQL);
-//			pstmt.setString(1, userID);
-//			rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				if(rs.getString(1).equals(userPassword))
-//					return 1; // �α��� ����
-//				else
-//					return 0; // �α��� ����(��й�ȣ ����ġ)
-//			}
-//			return -1; // ���̵� �������� ����
-//		} catch(Exception e){
-//			e.printStackTrace();
-//		}
-//	}
-	
-	public int login(String userID, String userPassword) {
-		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, userID);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				if(rs.getString(1).equals(userPassword))
-					return 1; // �α��� ����
-				else
-					return 0; // �α��� ����(��й�ȣ ����ġ)
-			}
-			return -1; // ���̵� �������� ����
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-	
-		return -2; //DB ����
-	}
+	private UserDAO(){}
+    public static UserDAO getInstance(){
+        if(instance==null)
+            instance=new UserDAO();
+        return instance;
+    }
+    public void insertMember(User user) throws SQLException
+    {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            // 커넥션을 가져온다.
+            conn = DBConnection.getConnection();
+            
+            // 자동 커밋을 false로 한다.
+            conn.setAutoCommit(false);
+            
+            // 쿼리 생성한다.
+            StringBuffer sql = new StringBuffer();
+            /* 
+             * StringBuffer에 담긴 값을 얻으려면 toString()메서드를
+             * 이용해야 한다.
+             */
+            pstmt = conn.prepareStatement(sql.toString());
+            pstmt.setString(2, user.getUserName());
+            pstmt.setString(3, user.getUserID());
+            pstmt.setString(4, user.getUserPassword());
+            pstmt.setString(5, user.getUserEmail());
+            
+            // 쿼리 실행
+            pstmt.executeUpdate();
+            // 완료시 커밋
+            conn.commit(); 
+            
+        } catch (ClassNotFoundException | NamingException | SQLException sqle) {
+            // 오류시 롤백
+            conn.rollback(); 
+            
+            throw new RuntimeException(sqle.getMessage());
+        } finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        } // end try~catch 
+    } // end insertMember()
+
 }

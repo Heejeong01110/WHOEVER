@@ -9,7 +9,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 	<!-- Bootstrap core CSS -->
 	<link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	
+	<%request.setCharacterEncoding("UTF-8"); %>
 	<style>
 		.app {
 			position:absolute;
@@ -97,6 +97,12 @@
         
 	</style>
 	
+	<script type="text/javascript">
+	function signupGo(){
+		window.location.href = "http://localhost:8080/WHOEVER/login/signup.jsp";
+	}
+	</script>
+	
 <title>WHOEVER LOGIN</title>
 </head>
 
@@ -122,15 +128,15 @@
 						}
 					%>
   						<form action="login_process.jsp" method="post">
-  							<input id="login_id" class="member_input_box"type="text"name="login_id" placeholder="이메일 주소">
+  							<input id="login_id" class="member_input_box"type="text"name="login_id" placeholder="아이디">
   							<input id="login_password" class="member_input_box"type="password"name="login_password"placeholder="비밀번호">
   							<span style="font-weight:400;font-size:14px;line-eight:20px;color:#1ea1f7;float:right;margin-top:20px;">
-  								<a style="font-weight: 400;font-size: 14px;line-height: 20px;color: #1ea1f7;text-decoration: underline;"href="#">비밀번호를 잊으셨나요?</a>
+  								<a style="font-weight: 400;font-size: 14px;line-height: 20px;color: #1ea1f7;text-decoration: underline;"href="findpw.jsp">아이디, 비밀번호를 잊으셨나요?</a>
   							</span>
   							<br>
   							<button type="submit" class="member_button_login"><strong>로그인</strong></button>
   						</form>
-  						<button type="button" class="member_button_login"  onclick = "location.href = signup.jsp"><strong>회원가입</strong></button>
+  						<button type="button" class="member_button_login"  onclick = "signupGo()"><strong>회원가입</strong></button>
   					</div>
   				</div>
   			</div>

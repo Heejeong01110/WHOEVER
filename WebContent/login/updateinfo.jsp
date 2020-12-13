@@ -84,11 +84,14 @@
 		ResultSet rs;
 		String sql;
 
-		sql = " SELECT name, student_id, status_msg FROM user WHERE id = '" + loginId+"'";
+		sql = " SELECT name, email, student_id, status_msg FROM user WHERE id = '" + loginId+"'";
+
 		rs = state.executeQuery(sql);
 
 		while (rs.next()) {
 			name = rs.getString("name");
+			email = rs.getString("email");
+
 			status_msg = rs.getString("status_msg");
 		}
 
@@ -144,6 +147,7 @@ function checkMember() {
 </script>
 
 
+
 <title>WHOEVER MMPAGE</title>
 <jsp:include page="../header.jsp" />
 </head>
@@ -165,6 +169,9 @@ function checkMember() {
 				<input id="update_password_new" class="member_input_box" type="text"name="update_password_new" placeholder="새로운 패스워드" maxlength="50">
 				<p>패스워드 확인</p>
 				<input id="update_password_re" class="member_input_box" type="text"name="update_password_re" placeholder="패스워드 확인" maxlength="50">
+
+				<p>이메일 주소</p>
+				<input id="update_email" class="member_input_box" type="email"name="update_email" placeholder="이메일 주소" maxlength="50">
 				<br>
 				
 				<button type="button" class="member_button_update"onClick="location.href='mypage.jsp'"><strong>취소</strong></button>

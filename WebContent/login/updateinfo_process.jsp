@@ -10,6 +10,8 @@
 	String oldpw = request.getParameter("update_password_old");
 	String newpw = request.getParameter("update_password_new");
 	String pw_re = request.getParameter("update_password_re");
+	String email = request.getParameter("update_email");
+
 	
 	String checkpw=null;
 	//db 읽어오기
@@ -39,11 +41,13 @@
 			response.sendRedirect("mypage.jsp");
 		}else{
 			//2. 일치할 경우에만 정보 수정
-			sql = " UPDATE user SET name=?, password=? WHERE id = '" + loginId+"'";
+
+			sql = " UPDATE user SET name=?, password=?, email=? WHERE id = '" + loginId+"'";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setString(2, newpw);
+			pstmt.setString(3, email);
 			int r = pstmt.executeUpdate();
 			pstmt.close();			
 		}

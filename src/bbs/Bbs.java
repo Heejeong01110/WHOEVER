@@ -1,55 +1,63 @@
 package bbs;
 
 public class Bbs {
-
-	private int bbsID;
-	private String bbsTitle;
-	private String userID;
-	private String bbsDate;
-	private String bbsContent;
-	private int bbsAvailable;
-	private String bbsType;
+	private int bbs_id;
+	private String bbs_title;
+	private String user_id;
+	private String bbs_date;
+	private String bbs_content;
+	private int bbs_available;
+	private String bbs_type;
+	private int category_type;
 	
-	public String getBbsType() {
-		return bbsType;
+
+	public int getCategory_type() {
+		return category_type;
 	}
-	public void setBbsType(String bbsType) {
-		this.bbsType = bbsType;
+	public void setCategory_type(int category_type) {
+		this.category_type = category_type;
 	}
-	public int getBbsID() {
-		return bbsID;
+	public int getBbs_id() {
+		return bbs_id;
 	}
-	public void setBbsID(int bbsID) {
-		this.bbsID = bbsID;
+	public void setBbs_id(int bbs_id) {
+		this.bbs_id = bbs_id;
 	}
-	public String getBbsTitle() {
-		return bbsTitle;
+	public String getBbs_title() {
+		return bbs_title;
 	}
-	public void setBbsTitle(String bbsTitle) {
-		this.bbsTitle = bbsTitle;
+	public void setBbs_title(String bbs_title) {
+		this.bbs_title = bbs_title;
 	}
-	public String getUserID() {
-		return userID;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getBbsDate() {
-		return bbsDate;
+	public String getBbs_date() {
+		return bbs_date;
 	}
-	public void setBbsDate(String bbsDate) {
-		this.bbsDate = bbsDate;
+	public void setBbs_date(String bbs_date) {
+		this.bbs_date = bbs_date;
 	}
-	public String getBbsContent() {
-		return bbsContent;
+	public String getBbs_content() {
+		return bbs_content;
 	}
-	public void setBbsContent(String bbsContent) {
-		this.bbsContent = bbsContent;
+	public void setBbs_content(String bbs_content) {
+		this.bbs_content = bbs_content;
 	}
-	public int getBbsAvailable() {
-		return bbsAvailable;
+	public int getBbs_available() {
+		return bbs_available;
 	}
-	public void setBbsAvailable(int bbsAvailable) {
-		this.bbsAvailable = bbsAvailable;
+	public void setBbs_available(int bbs_available) {
+		this.bbs_available = bbs_available;
 	}
+	public String getBbs_type() {
+		return bbs_type;
+	}
+	public void setBbs_type(String bbs_type) {
+		this.bbs_type = bbs_type;
+	}
+	
 }

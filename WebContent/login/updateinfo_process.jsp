@@ -32,8 +32,7 @@
 		while (rs.next()) {
 			checkpw=rs.getString("password");
 		}
-		rs.close();
-		state.close();
+		
 		
 		if(!checkpw.equals(oldpw)){
 			//값 같이 넘겨주거나 틀렸다고 확인시켜주는것도 ㄱㅊ
@@ -46,13 +45,13 @@
 			pstmt.setString(1, name);
 			pstmt.setString(2, newpw);
 			int r = pstmt.executeUpdate();
-			
-			
+			pstmt.close();			
 		}
 		
-		
-		pstmt.close();
+		rs.close();
+		state.close();
 		con.close();
+		response.sendRedirect("mypage.jsp");
 		
 	}catch (SQLException e) {
 		System.out.println("[SQL Error : " + e.getMessage() + "]");
@@ -75,5 +74,4 @@
 		}
 	}
 	
-	response.sendRedirect("mypage.jsp");
 %>

@@ -115,8 +115,6 @@
 %>
 <script>
 function checkMember() {
-	var emailhint = document.getElementById("emailck");
-	var idhint = document.getElementById("idck");
 	//var expid = /^[a-z0-9]{5,20}$/;
 	var exppwd = /^[A-Za-z0-9]{8,16}$/;
 	
@@ -125,7 +123,6 @@ function checkMember() {
 		document.update_info.update_name.focus();
 		return false;
 	}
-	
 	if ($.trim($("#update_password_old").val()) == '') {
 		alert("패스워드를 입력해주세요.");
 		document.update_info.update_password_old.focus();
@@ -136,14 +133,13 @@ function checkMember() {
 		document.update_info.update_password_new.focus();
 		return false;
 	}
-
 	if ($.trim($("#update_password_new").val()) != $.trim($("#update_password_re").val())) {
 		alert("패스워드 값이 일치하지 않습니다.");
 		document.update_info.update_password_re.focus();
 		return false;
 	}
 	
-	document.update_process.submit();
+	document.update_info.submit();
 }//checkmember end
 </script>
 
@@ -159,8 +155,7 @@ function checkMember() {
 				아이디 :
 				<%out.println(loginId); %>
 			</p>
-			<form action="updateinfo_process.jsp" method="post"
-				name="update_info">
+			<form action="updateinfo_process.jsp" method="post" name="update_info">
 
 				<p>이름</p>
 				<input id="update_name" class="member_input_box" type="text"name="update_name" placeholder="이름" maxlength="50">
@@ -171,12 +166,12 @@ function checkMember() {
 				<p>패스워드 확인</p>
 				<input id="update_password_re" class="member_input_box" type="text"name="update_password_re" placeholder="패스워드 확인" maxlength="50">
 				<br>
+				
 				<button type="button" class="member_button_update"onClick="location.href='mypage.jsp'"><strong>취소</strong></button>
-				<button type="submit" class="member_button_update"><strong>수정</strong></button>
+				<button type="button" class="member_button_update" onClick="checkMember()"><strong>수정</strong></button>
 			</form>
 		</div>
 	</div>
-<!-- 패스워드 일치 여부 확인 -->
 <!-- 항목들 중 바꿀거랑 안바꿀거를 선택하도록 구조를 바꿔야됨 -->
 
 

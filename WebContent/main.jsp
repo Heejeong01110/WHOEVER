@@ -12,12 +12,11 @@
 <%@ page import ="java.sql.*" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.io.*" %>
-<%@ page import = "category.CategoryDAO" %>
-<%@ page import = "category.Category" %>
-<%@ page import = "tag.TagDAO" %>
-<%@ page import = "tag.Tag" %>
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "bbs.Bbs" %>
+<%@ page import = "tag.Tag" %>
+<%@ page import = "tag.TagDAO" %>
+
 <title>WHOEVER</title>
 
 </head>

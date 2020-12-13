@@ -141,7 +141,8 @@
 			return false;
 		}
 		document.signup_info.submit();
-	}//checkmember emd
+	}//checkmember end
+
 
 	function checkEmail() {
 		var emailhint = document.getElementById("emailck"); //이메일 밑 힌트문구

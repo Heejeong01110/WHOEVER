@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import java.util.ArrayList;
 import tag.Tag;
+
 public class BbsDAO {
 
 	private Connection conn;
@@ -21,9 +25,7 @@ public class BbsDAO {
 		}catch(Exception e) {
 			e.printStackTrace();	
 		}
-	}
-	
-	public String getDate() {
+	}	public String getDate() {
 		String SQL = "SELECT NOW()";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

@@ -2,8 +2,8 @@
 	pageEncoding="utf-8"%>
 <html>
 <head>
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
-<link rel="stylesheet" href="./resources/css/card.css" />
+<link rel="stylesheet" href="resources/css/bootstrap.min.css " />
+<link rel="stylesheet" href="resources/css/card.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
@@ -52,7 +52,6 @@
 					<div class="bbs-header-text"><%=list.get(i).getBbs_type()%></div>
 					<div class="bbs-header-number">2 / 5</div>
 				</div>
-
 			</div>
 			<!--  카드 바디 -->
 
@@ -77,9 +76,24 @@
 			</div>
 		</div>
 	</a>
+		
 	<%
 		} 
 	%>
+	<div class="search__container" style="width: 450px; margin: 0 auto; margin-top: 50px">
+    	<p class="search__title">
+        	WHO EVER
+    	</p>
+    	<form name = "searchBox" action = "mainServlet?cmd=search" method="post">
+    		<select id="searchType" name="searchType">
+    			<option value="title"<c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
+    			<option value="type"<c:if test="${searchType == 'type'}">selected</c:if>>종류</option>
+    		</select>
+	    	<input class="search__input" type="text" placeholder="Search" name = "searchData">
+	    	<p> <!-- <input type="submit" value = "전송"> -->
+	    </form>
+	</div>
+
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.js"></script>
 </body>

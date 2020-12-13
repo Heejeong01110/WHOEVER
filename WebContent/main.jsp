@@ -59,9 +59,10 @@
 		Bbs bbsvo = new Bbs();
 		BbsDAO bbsdao = new BbsDAO();
 		TagDAO tagDAO = new TagDAO();
-		ArrayList<Bbs> bbslist = (ArrayList<Bbs>)request.getAttribute("bbslist");
+		//ArrayList<Bbs> bbslist = (ArrayList<Bbs>)request.getAttribute("bbslist");
 		//ArrayList<Bbs> list = bbsDAO.getList();
 		//ArrayList<Tag> hashList = tagDAO.getHash();
+		ArrayList<Bbs> bbslist = bbsdao.allElement();
 		for(Bbs B: bbslist){
 		%>
 	<a href="view.jsp?bbs_id=<%= B.getBbs_id()%>"> <!-- 클릭 시 링크 설정 -->

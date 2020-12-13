@@ -1,11 +1,17 @@
 <%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8"%>
+<%@ page import = "bbs.*"%>
+<%@ page import = "java.sql.*"%>
+<%@ page import = "java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <link rel="stylesheet" href="./css/bootstrap.min.css "/>
-<link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="css/search.css?after">
 
 <title>게시판</title>
 </head>
+<script type="text/javascript">
+</script>
 <body>
 	<nav class = "navbar navbar-default">
 		<div class = "navbar-header">
@@ -47,8 +53,8 @@
     	</p>
     	<form name = "searchBox" action = "mainServlet?cmd=search" method="post">
     		<select id="searchType" name="searchType">
-    			<option value="title">제목</option>
-    			<option value="type">종류</option>
+    			<option value="title"<c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
+    			<option value="type"<c:if test="${searchType == 'type'}">selected</c:if>>종류</option>
     		</select>
 	    	<input class="search__input" type="text" placeholder="Search" name = "searchData">
 	    	<p> <!-- <input type="submit" value = "전송"> -->
@@ -92,6 +98,5 @@
 		%>
 		</table>
 	</div>
-	
 </body>
 </html>

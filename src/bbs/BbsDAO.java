@@ -15,11 +15,13 @@ public class BbsDAO {
 	
 	public BbsDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/whoever";
-			String dbID = "root";
-			String dbPassword = "lp950528";
+			
+			String dbURL = "jdbc:mysql://blazingcode.asuscomm.com:6000/whoever";
+			String dbID = "whoever";
+			String dbPassword = "Whoever12#";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
+			
 			System.out.println("DB connect");
 		}catch(Exception e) {
 			System.out.println("DB not connect");
@@ -71,11 +73,11 @@ public class BbsDAO {
 	}
 	
 	public ArrayList<Bbs> getDatabytitle(String title) {
-		String SQL = "SELECT * FROM bbs WHERE bbs_title = ?";
+		String SQL = "SELECT * FROM bbs WHERE bbs_title LIKE '%"+ title +"%'";
 		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, title);
+			//pstmt.setString(1, title);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -98,11 +100,11 @@ public class BbsDAO {
 	}
 	
 	public ArrayList<Bbs> getDatabytype(String type) {
-		String SQL = "SELECT * FROM bbs WHERE bbs_type = ?";
+		String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
 		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, type);
+			//pstmt.setString(1, type);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

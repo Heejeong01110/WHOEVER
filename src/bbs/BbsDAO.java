@@ -55,12 +55,12 @@ public class BbsDAO {
 		return -1;
 	}
 	*/
-	public int write(String bbs_title,int user_id, String bbs_content, String bbs_type) {
+	public int write(String bbs_title,String user_id, String bbs_content, String bbs_type) {
 		String SQL = "INSERT INTO BBS (bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bbs_title);
-			pstmt.setInt(2, user_id);
+			pstmt.setString(2, user_id);
 			pstmt.setString(3, getDate());
 			pstmt.setString(4, bbs_content);
 			pstmt.setInt(5, 1);

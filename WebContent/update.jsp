@@ -6,9 +6,6 @@
 <%@ page import = "java.io.*" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
-<jsp:useBean id = "category" class = "category.Category" scope="page"/>
-<jsp:useBean id = "tag" class = "tag.Tag" scope="page"/>
-<jsp:setProperty name = "tag" property = "tag_name"/>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css "/>
@@ -17,6 +14,7 @@
 <body>
 
 	<%
+		Bbs bbs = new Bbs();
 		String user_id = null;
 		//String user_id = (String) session.getAttribute("sessionId");
 		if(session.getAttribute("sessionId") != null){
@@ -30,7 +28,7 @@
 			script.println("</script>");
 			
 		}
-		int bbs_id = 0;
+		int bbs_id = 6;
 		if(request.getParameter("bbs_id") != null){
 			bbs_id = Integer.parseInt(request.getParameter("bbs_id"));
 		}
@@ -41,15 +39,15 @@
 				script.println("location.href = 'main.jsp'");
 				script.println("</script>");
 		}
-		Bbs bbs = new BbsDAO().getBbs(bbs_id);
-		Tag tagDAO = new TagDAO().getTag(bbs_id);
-		if(!user_id.equals(bbs.getUser_id())){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
-			script.println("location.href = 'main.jsp'");
-			script.println("</script>");
-		}
+		//Bbs bbs = new BbsDAO().getBbs(bbs_id);
+		//Tag tagDAO = new TagDAO().getTag(bbs_id);
+		//if(!user_id.equals(bbs.getUser_id())){
+		//	PrintWriter script = response.getWriter();
+		//	script.println("<script>");
+			//script.println("alert('권한이 없습니다.')");
+		//	script.println("location.href = 'main.jsp'");
+		//	script.println("</script>");
+	//	}
 	
 	%>
 	<jsp:include page="header.jsp" />

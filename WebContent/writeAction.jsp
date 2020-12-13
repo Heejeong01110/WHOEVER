@@ -14,37 +14,39 @@
 </head>
 <body>
 	<%
+	//String loginId = (String) session.getAttribute("sessionId");
+	 //  String loginUserId = (String) session.getAttribute("sessionUserId"); //user 인덱스번호
+	   
+	   //로그인 필요한 서비스의 경우
+	   /*if(loginId==null ||loginUserId==null){
+	      out.println("<script> alert(\"로그인이 필요합니다.\"); window.location= \"login/login.jsp\"; </script>");}*/
 		Bbs bbs = new Bbs();
 		BbsDAO bbsDAO = new BbsDAO();
 		TagDAO tagDAO = new TagDAO();
 		//String user_id = null;
-		 int loginUserId = 3;
-		 String loginId = "홍길동";
+		 String loginUserId = null;
+		 String loginId = null;
 		 String title = request.getParameter("bbs_title");
 		 String content = request.getParameter("bbs_content");
 		//세션 받아오기
 	  
 		//String user_id = (String) session.getAttribute("sessionId");
-		/*if(session.getAttribute("sessionId") != null){
+		if(session.getAttribute("sessionId") != null){
 			  loginId = (String) session.getAttribute("sessionId"); //user 이름
-			  loginUserId =  (Integer)session.getAttribute("sessionUserId"); //user 인덱스번호
-			  out.println("id:"+loginUserId);
+			  //loginUserId =  (String) session.getAttribute("sessionUserId"); //user 인덱스번호
+			 
+			 // out.println("id:"+loginUserId + " "+ loginId);
 		}
 		
-		if(loginUserId == -1){
+		if(loginId.equals(null)){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 하세요.')");
 			script.println("location.href = './login/login.jsp'");
 			script.println("</script>");
-			*/
-			//String loginId = (String) session.getAttribute("sessionId");
-			 //  String loginUserId = (String) session.getAttribute("sessionUserId"); //user 인덱스번호
-			   
-			   //로그인 필요한 서비스의 경우
-			   /*if(loginId==null ||loginUserId==null){
-			      out.println("<script> alert(\"로그인이 필요합니다.\"); window.location= \"login/login.jsp\"; </script>");
-		} else{*/
+		}
+			
+		 else{
 			if(request.getParameter("bbs_title") == null || request.getParameter("bbs_content") == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -60,12 +62,10 @@
 				for(int i = 0; i < tagArray.length; i++){
 				System.out.println("카테고리\n" + tagArray[i]);
 				}
-				/*for(int i = 0; i < tagArray.length; i++){
-					tagContent = tagArray[i];
-				}*/
+				
 				//int hash1 = categoryDAO.Hashtag(tagArray);
 				
-				int result = bbsDAO.write(title,loginUserId, content ,type);
+				int result = bbsDAO.write(title,loginId, content ,type);
 				int hash2 = tagDAO.Hashtag(tagArray);
 				out.println("타입: \n"+ bbs.getBbs_type());
 				if(result == -1){
@@ -82,8 +82,8 @@
 					script.println("</script>");
 				}
 			}
-			
-	//	}
+		 }
+	
 	%>
 </body>
 </html>

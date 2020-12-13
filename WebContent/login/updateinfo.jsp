@@ -79,17 +79,16 @@
 
 	try {
 		Class.forName(JDBC_DRIVER);
-		con = DriverManager.getConnection("jdbc:mysql://localhost/whoever", "root", "1234");
+		con = DriverManager.getConnection("jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?serverTimezone=UTC", "whoever", "Whoever12#");
 		state = con.createStatement();
 		ResultSet rs;
 		String sql;
 
-		sql = " SELECT name, email, student_id, status_msg FROM user WHERE id = '" + loginId+"'";
+		sql = " SELECT name, student_id, status_msg FROM user WHERE id = '" + loginId+"'";
 		rs = state.executeQuery(sql);
 
 		while (rs.next()) {
 			name = rs.getString("name");
-			email = rs.getString("email");
 			status_msg = rs.getString("status_msg");
 		}
 
@@ -114,6 +113,39 @@
 		}
 	}
 %>
+<script>
+function checkMember() {
+	var emailhint = document.getElementById("emailck");
+	var idhint = document.getElementById("idck");
+	//var expid = /^[a-z0-9]{5,20}$/;
+	var exppwd = /^[A-Za-z0-9]{8,16}$/;
+	
+	if ($.trim($("#update_name").val()) == '') {
+		alert("이름을 입력해주세요.");
+		document.update_info.update_name.focus();
+		return false;
+	}
+	
+	if ($.trim($("#update_password_old").val()) == '') {
+		alert("패스워드를 입력해주세요.");
+		document.update_info.update_password_old.focus();
+		return false;
+		//예전 패스워드가 맞나 확인
+	} else if (exppwd.test($.trim($("#update_password_new").val())) == false) {//비밀번호 형식	
+		alert("패스워드 형식이 올바르지 않습니다.");
+		document.update_info.update_password_new.focus();
+		return false;
+	}
+
+	if ($.trim($("#update_password_new").val()) != $.trim($("#update_password_re").val())) {
+		alert("패스워드 값이 일치하지 않습니다.");
+		document.update_info.update_password_re.focus();
+		return false;
+	}
+	
+	document.update_process.submit();
+}//checkmember end
+</script>
 
 
 <title>WHOEVER MMPAGE</title>
@@ -138,8 +170,6 @@
 				<input id="update_password_new" class="member_input_box" type="text"name="update_password_new" placeholder="새로운 패스워드" maxlength="50">
 				<p>패스워드 확인</p>
 				<input id="update_password_re" class="member_input_box" type="text"name="update_password_re" placeholder="패스워드 확인" maxlength="50">
-				<p>이메일 주소</p>
-				<input id="update_email" class="member_input_box" type="email"name="update_email" placeholder="이메일 주소" maxlength="50">
 				<br>
 				<button type="button" class="member_button_update"onClick="location.href='mypage.jsp'"><strong>취소</strong></button>
 				<button type="submit" class="member_button_update"><strong>수정</strong></button>

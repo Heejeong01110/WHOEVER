@@ -14,8 +14,8 @@
 %>
 
 <sql:setDataSource var="dataSource"
-	url="jdbc:mysql://localhost:3306/whoever"
-	driver="com.mysql.jdbc.Driver" user="root" password="1234" />
+	url="jdbc:mysql://blazingcode.asuscomm.com:6000/whoever"
+	driver="com.mysql.jdbc.Driver" user="whoever" password="Whoever12#" />
 
 <sql:update dataSource="${dataSource}" var="resultSet">
 	INSERT INTO user (name, id, password, email) VALUES (?, ?, ?, ?)
@@ -28,4 +28,3 @@
 <c:if test="${resultSet>=1}">
 	<c:redirect url="../main.jsp?msg=1" />
 </c:if>
-

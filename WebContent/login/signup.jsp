@@ -96,7 +96,6 @@
 </head>
 
 <script type="text/javascript">
-	var emailCheck = 0;
 	function checkMember() {
 		var emailhint = document.getElementById("emailck");
 		var idhint = document.getElementById("idck");
@@ -141,7 +140,7 @@
 			return false;
 		}
 		document.signup_info.submit();
-	}//checkmember emd
+	}//checkmember end
 
 	function checkEmail() {
 		var emailhint = document.getElementById("emailck"); //이메일 밑 힌트문구

@@ -12,7 +12,7 @@
 
 	try {
 		Class.forName(JDBC_DRIVER);
-		con = DriverManager.getConnection("jdbc:mysql://localhost/whoever?serverTimezone=UTC", "root", "1234");
+		con = DriverManager.getConnection("jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?serverTimezone=UTC", "whoever", "Whoever12#");
 		state = con.createStatement();
 		ResultSet rs;
 		String sql;

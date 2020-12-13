@@ -49,10 +49,11 @@
 	
 	<div class="search__container" style="width: 450px; margin: 0 auto; margin-top: 50px">
     	<p class="search__title">
-        	WHO EVER
+        	WHOEVER
     	</p>
     	<form name = "searchBox" action = "mainServlet?cmd=search" method="post">
     		<select id="searchType" name="searchType">
+    			<option value="all"<c:if test="${searchType == 'all'}">selected</c:if>>전체</option>
     			<option value="title"<c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
     			<option value="type"<c:if test="${searchType == 'type'}">selected</c:if>>종류</option>
     		</select>

@@ -41,7 +41,7 @@
 		BbsDAO bbsDAO = new BbsDAO();
 		TagDAO tagDAO = new TagDAO();
 		ArrayList<Bbs> list = bbsDAO.getList();
-		ArrayList<Tag> hashList = tagDAO.getHash();
+		ArrayList<Tag> tlist = tagDAO.getHash();
 		for(int i = 0; i< list.size(); i++){
 		%>
 	<a href="view.jsp?bbs_id=<%= list.get(i).getBbs_id()%>"> <!-- 클릭 시 링크 설정 -->

@@ -3,6 +3,8 @@
 <%@ page import = "java.io.PrintWriter" %>
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "bbs.Bbs" %>
+<%@ page import = "tag.TagDAO" %>
+<%@ page import = "tag.Tag" %>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
@@ -28,6 +30,8 @@
 			script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbs_id);
+		//Tag tag = new TagDAO().getTag(bbs_id);
+		TagDAO tagDAO = new TagDAO();
 	%>	
 	<jsp:include page="header.jsp" />
 	<div class="container">
@@ -51,6 +55,10 @@
 							<td colspan = "2"><%= bbs.getUser_id() %></td>
 						</tr>
 						<tr>
+							<td>태그</td>
+							<td colspan = "2"><%=tagDAO.getTag(bbs_id)%></td>
+						</tr>
+						<tr>
 							<td>작성일자</td>
 							<td colspan = "2"><%=bbs.getBbs_date().substring(0 , 11) + bbs.getBbs_date().substring(11, 13) + "시 " + bbs.getBbs_date().substring(14, 16) + "분 " + bbs.getBbs_date().substring(17, 19) + "초"%></td>
 						</tr>
@@ -68,13 +76,13 @@
 				</table>
 				<a href = "main.jsp" class = "btn btn-primary">목록</a>
 				<%
-					//if(user_id != null && user_id.equals(bbs.getUser_id())){
+					if(user_id != null && user_id.equals(bbs.getUser_id())){
 						
 				%>
-					<a href = "update.jsp" class = "btn btn-primary">수정</a>
+					<a href = "update.jsp?bbs_id=<%=bbs_id%>" class = "btn btn-primary">수정</a>
 					<a onclick = "return confirm('정말로 삭제하시겠습니까?')" href = "deleteAction.jsp?bbs_id=<%=bbs_id%>" class = "btn btn-primary">삭제</a>
-				 <% 
-					//}
+				<% 
+					}
 				%>
 				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
 		

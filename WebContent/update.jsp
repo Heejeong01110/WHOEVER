@@ -14,7 +14,6 @@
 <body>
 
 	<%
-		Bbs bbs = new Bbs();
 		String user_id = null;
 		//String user_id = (String) session.getAttribute("sessionId");
 		if(session.getAttribute("sessionId") != null){
@@ -26,9 +25,8 @@
 			script.println("alert('로그인을 하세요.')");
 			script.println("location.href = './login/login.jsp'");
 			script.println("</script>");
-			
 		}
-		int bbs_id = 6;
+		int bbs_id = 0;
 		if(request.getParameter("bbs_id") != null){
 			bbs_id = Integer.parseInt(request.getParameter("bbs_id"));
 		}
@@ -39,15 +37,16 @@
 				script.println("location.href = 'main.jsp'");
 				script.println("</script>");
 		}
-		//Bbs bbs = new BbsDAO().getBbs(bbs_id);
+		Bbs bbs = new BbsDAO().getBbs(bbs_id);
+		TagDAO tagDAO = new TagDAO();
 		//Tag tagDAO = new TagDAO().getTag(bbs_id);
-		//if(!user_id.equals(bbs.getUser_id())){
-		//	PrintWriter script = response.getWriter();
-		//	script.println("<script>");
-			//script.println("alert('권한이 없습니다.')");
-		//	script.println("location.href = 'main.jsp'");
-		//	script.println("</script>");
-	//	}
+		if(!user_id.equals(bbs.getUser_id())){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href = 'main.jsp'");
+			script.println("</script>");
+		}
 	
 	%>
 	<jsp:include page="header.jsp" />
@@ -71,7 +70,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><input type = "text" class = "form-control" placeholder = "키워드" name = "tag_name" maxlength = "30" value = "">
+							<td><input type = "text" class = "form-control" placeholder = "키워드" name = "tag_name" maxlength = "30" value = "<%=tagDAO.getTag(bbs_id)%>">
 							</td>
 						</tr>
 						<tr>
@@ -80,7 +79,7 @@
 						</tr>
 						<tr>
 							<td ><textarea class="form-control" placeholder="내용"
-									name="bbs_content" maxlength="2048" style="height: 350px;"></textarea></td>
+									name="bbs_content" maxlength="2048" style="height: 350px;"><%= bbs.getBbs_content() %></textarea></td>
 						</tr>
 
 					</tbody>

@@ -85,12 +85,6 @@
 	String pwd_re = request.getParameter("signup_password_re");
 	String name = request.getParameter("signup_name");
 	
-	if(false/*signup_idckeck.ckeck(id)*/){
-		out.println("<script>");
-		out.println("alert(\"아이디가 중복됩니다. 다른아이디를 선택해주세요.\")");
-		out.println("location.href=\"signup.jsp\"");
-		out.println("</script>");
-	}
 %>
 <!-- 값 입력여부 확인 -->
 </head>

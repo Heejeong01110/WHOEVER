@@ -95,7 +95,8 @@
 <body>
    <jsp:include page="header.jsp" />
    <%
-       int oncePage = 4;
+      int oncePage = 4;
+   	  int vButton = 1;
       String msg = request.getParameter("msg");
    
       if (msg != null) {
@@ -131,6 +132,10 @@
       TagDAO tagDAO = new TagDAO();
       ArrayList<Bbs> bbslist = (ArrayList<Bbs>)request.getAttribute("bbslist");
       if(bbslist!=null) {
+    	  vButton = 0;
+    	  if((int)request.getAttribute("isEmpty") == 1)
+    		  //여기부터 하면 됨
+    		  System.out.println("nullllllll");
          for(Bbs B: bbslist){
       %>
    <a href="view.jsp?bbs_id=<%= B.getBbs_id()%>"> <!-- 클릭 시 링크 설정 -->
@@ -172,7 +177,7 @@
       }else{
          BbsDAO bbsdao = new BbsDAO();
          bbslist = bbsdao.allElement();
-         int test = 0;
+         int firstNotification = 0;
          for(Bbs B: bbslist){
    %>
    <a href="view.jsp?bbs_id=<%= B.getBbs_id()%>"> <!-- 클릭 시 링크 설정 -->
@@ -210,8 +215,8 @@
       </div>
    </a>
    <%      
-            test++;
-            if(test==4)
+   			firstNotification++;
+            if(firstNotification == 4)
                break;
          }
       }
@@ -219,8 +224,22 @@
    <div id="listBody">
    </div>
    
-   <button type="button" class="page_more" id="more" onclick="moreList()" value="<%=oncePage%>">더보기..</button>
-   
+   <% 
+   		//검색하면 더보기를 없앤다
+   		if(vButton == 1){
+   %>
+   <div id="test" style="display:block">
+   	<button type="button" class="page_more" id="more" onclick="moreList()" value="<%=oncePage%>" >더보기..</button>
+   </div>
+   <% 
+   		}else{
+   %>
+   <div id="test" style="display:none">
+   	<button type="button" class="page_more" id="more" onclick="moreList()" value="<%=oncePage%>" >더보기..</button>
+   </div>
+   <% 
+   		}
+   %>
    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
    <script src="resources/js/bootstrap.js"></script>
 </body>

@@ -48,6 +48,11 @@ public class mainServlet extends HttpServlet {
 		if(cmd.equals("search")) {
 			BbsDAO bbsdao = new BbsDAO();
 			String searchType = request.getParameter("searchType");
+			
+			if(request.getParameter("searchData")=="") {
+				request.setAttribute("isEmpty", 1);
+			}
+			
 			if(searchType.equals("all")) {
 				ArrayList<Bbs> bbslist = bbsdao.getAll(request.getParameter("searchData"));
 				request.setAttribute("bbslist", bbslist);

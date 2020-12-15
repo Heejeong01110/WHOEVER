@@ -1,6 +1,5 @@
 <%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8"%>
 <%@ page import = "bbs.BbsDAO" %>
-<%@ page import = "bbs.Bbs" %>
 <%@ page import = "tag.TagDAO" %>
 <%@ page import = "category.CategoryDAO" %>
 <%@ page import = "java.io.PrintWriter" %>
@@ -46,15 +45,16 @@
 			script.println("</script>");
 		}
 			
-		 else{
-			if(request.getParameter("bbs_title") == null || request.getParameter("bbs_content") == null){
+		} else{
+			if(bbs.getBbs_title() == null || bbs.getBbs_content() == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않은 내용이 있습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 			} else{
-				
+				BbsDAO bbsDAO = new BbsDAO();
+				TagDAO tagDAO = new TagDAO();
 				//CategoryDAO categoryDAO = new CategoryDAO();
 				request.setCharacterEncoding("utf-8");
 				String type = request.getParameter("bbs_type");

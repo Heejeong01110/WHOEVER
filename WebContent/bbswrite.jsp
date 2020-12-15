@@ -22,7 +22,7 @@
 					</thead>
 					<tbody>
 						<tr>
-					<td><input type="radio" placeholder="종류" name="bbs_type"
+							<td><input type="radio" placeholder="종류" name="bbs_type"
 								maxlength="20" value="구인" checked>구인 <input type="radio"
 								placeholder="종류" name="bbs_type" maxlength="20" value="구직">구직
 							</td>

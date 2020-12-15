@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset = utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<link rel="stylesheet" href="resources/css/bootstrap.min.css " />
-<link rel="stylesheet" href="resources/css/card.css" />
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
+<link rel="stylesheet" href="./resources/css/card.css" />
+<link rel="stylesheet" href="./resources/css/search.css?after">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
@@ -13,10 +15,12 @@
 <%@ page import ="java.sql.*" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.io.*" %>
+<%@ page import = "tag.TagDAO" %>
+<%@ page import = "tag.Tag" %>
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "bbs.Bbs" %>
-<%@ page import = "tag.Tag" %>
-<%@ page import = "tag.TagDAO" %>
+<%@ page import = "bbs.*" %>
+<title>WHOEVER</title>
 
 <title>WHOEVER</title>
 </head>
@@ -124,7 +128,7 @@
 				<div class="bbs-body-header">
 					<h1><%=list.get(i).getBbs_title()%></h1>
 					<p class="bbs-body-hashtag"></p>
-					<p class="bbs-body-nickname">작성자: <%= list.get(i).getUser_id() %></p>
+					<p class="bbs-body-nickname">작성자: <%= B.getUser_id() %></p>
 				</div>
 
 				<p class="bbs-body-description"><%=list.get(i).getBbs_content()%></p>

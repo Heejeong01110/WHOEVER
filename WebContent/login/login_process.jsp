@@ -15,7 +15,7 @@
 
 <sql:query dataSource="${dataSource}" var="resultSet">
    SELECT * FROM USER WHERE id=? and password=?  
-	<sql:param value="<%=id%>" />
+   <sql:param value="<%=id%>" />
 	<sql:param value="<%=password%>" />
 </sql:query>
 

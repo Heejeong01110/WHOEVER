@@ -60,4 +60,5 @@ public class Bbs {
 		this.bbs_type = bbs_type;
 	}
 	
+
 }

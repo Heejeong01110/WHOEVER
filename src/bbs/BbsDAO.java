@@ -132,6 +132,7 @@ public class BbsDAO {
 		return null;
 	}
 	
+	
 	public int update(int bbs_id, String bbs_title, String bbs_content, String bbs_type) {
 		String SQL = "UPDATE BBS SET bbs_title = ?, bbs_content = ?, bbs_type = ? WHERE bbs_id = ?";
 		try {

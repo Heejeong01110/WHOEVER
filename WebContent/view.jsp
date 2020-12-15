@@ -3,6 +3,8 @@
 <%@ page import = "java.io.PrintWriter" %>
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "bbs.Bbs" %>
+<%@ page import = "tag.TagDAO" %>
+<%@ page import = "tag.Tag" %>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
@@ -28,6 +30,8 @@
 			script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbs_id);
+		//Tag tag = new TagDAO().getTag(bbs_id);
+		TagDAO tagDAO = new TagDAO();
 	%>	
 	<jsp:include page="header.jsp" />
 	<div class="container">
@@ -49,6 +53,10 @@
 						<tr>
 							<td>작성자</td>
 							<td colspan = "2"><%= bbs.getUser_id() %></td>
+						</tr>
+						<tr>
+							<td>태그</td>
+							<td colspan = "2"><%=tagDAO.getTag(bbs_id)%></td>
 						</tr>
 						<tr>
 							<td>작성일자</td>

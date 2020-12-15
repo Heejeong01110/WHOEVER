@@ -41,7 +41,7 @@ public class BbsDAO {
 		return "";
 	}
 	
-	public int getNext() {
+/*	public int getNext() {
 		String SQL = "SELECT bbs_id FROM BBS ORDER BY bbs_id DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -56,18 +56,17 @@ public class BbsDAO {
 	
 		return -1;
 	}
-	
-	public int write(String bbs_title, String user_id, String bbs_content, String bbs_type) {
-		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?, ?)";
+	*/
+	public int write(String bbs_title,String user_id, String bbs_content, String bbs_type) {
+		String SQL = "INSERT INTO BBS (bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext());
-			pstmt.setString(2, bbs_title);
-			pstmt.setString(3, user_id);
-			pstmt.setString(4, getDate());
-			pstmt.setString(5, bbs_content);
-			pstmt.setInt(6, 1);
-			pstmt.setString(7, bbs_type);
+			pstmt.setString(1, bbs_title);
+			pstmt.setString(2, user_id);
+			pstmt.setString(3, getDate());
+			pstmt.setString(4, bbs_content);
+			pstmt.setInt(5, 1);
+			pstmt.setString(6, bbs_type);
 			//pstmt.setInt(8, getNext());
 			return pstmt.executeUpdate();
 		} catch(Exception e){

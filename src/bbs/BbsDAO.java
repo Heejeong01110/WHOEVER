@@ -7,20 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 import tag.Tag;
-
 public class BbsDAO {
 
 	private Connection conn;
 	private ResultSet rs;
+	PreparedStatement pstmt = null;
 	
 	public BbsDAO() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
 			String dbURL = "jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?useSSL=false";
 			String dbID = "whoever";
 			String dbPassword = "Whoever12#";
+			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
 		}catch(Exception e) {
 			e.printStackTrace();	
@@ -43,7 +42,7 @@ public class BbsDAO {
 		return "";
 	}
 	
-/*	public int getNext() {
+	public int getNext() {
 		String SQL = "SELECT bbs_id FROM BBS ORDER BY bbs_id DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -149,6 +148,120 @@ public class BbsDAO {
 		return -1;
 	}
 	
+	public ArrayList<Bbs> allElement() {
+		String SQL = "SELECT * FROM bbs";
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Bbs bbsvo = new Bbs();
+				bbsvo.setBbs_id(rs.getInt("bbs_id"));
+				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				bbsvo.setBbs_date(rs.getString("bbs_date"));
+				bbsvo.setBbs_content(rs.getString("bbs_content"));
+				bbsvo.setBbs_available(rs.getInt("bbs_available"));
+				bbsvo.setBbs_type(rs.getString("bbs_type"));
+				bbslist.add(0, bbsvo);
+			}
+		} catch(Exception e){
+			System.out.println("allElement Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
+	public ArrayList<Bbs> getAll(String sStr) {
+		String[] SQL = new String[4];
+		SQL[0] = "SELECT * FROM bbs WHERE bbs_title LIKE '%"+ sStr +"%'";
+		SQL[1] = "SELECT * FROM bbs WHERE bbs_date LIKE '%"+ sStr +"%'";
+		SQL[2] = "SELECT * FROM bbs WHERE bbs_content LIKE '%"+ sStr +"%'";
+		SQL[3] = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ sStr +"%'";
+		
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			for(String s:SQL) {
+				pstmt = conn.prepareStatement(s);
+				//pstmt.setString(1, title);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Bbs bbsvo = new Bbs();
+					bbsvo.setBbs_id(rs.getInt("bbs_id"));
+					bbsvo.setBbs_title(rs.getString("bbs_title"));
+					bbsvo.setBbs_date(rs.getString("bbs_date"));
+					bbsvo.setBbs_content(rs.getString("bbs_content"));
+					bbsvo.setBbs_available(rs.getInt("bbs_available"));
+					bbsvo.setBbs_type(rs.getString("bbs_type"));
+					if(!bbslist.contains(bbsvo.getBbs_id()))
+						bbslist.add(0, bbsvo);
+				}
+				rs.close();
+			}
+		} catch(Exception e){
+			System.out.println("getDatabytitle Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
+	public ArrayList<Bbs> getDatabytitle(String title) {
+		String SQL = "SELECT * FROM bbs WHERE bbs_title LIKE '%"+ title +"%'";
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			//pstmt.setString(1, title);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Bbs bbsvo = new Bbs();
+				bbsvo.setBbs_id(rs.getInt("bbs_id"));
+				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				bbsvo.setBbs_date(rs.getString("bbs_date"));
+				bbsvo.setBbs_content(rs.getString("bbs_content"));
+				bbsvo.setBbs_available(rs.getInt("bbs_available"));
+				bbsvo.setBbs_type(rs.getString("bbs_type"));
+				bbslist.add(0, bbsvo);
+			}
+			rs.close();
+		} catch(Exception e){
+			System.out.println("getDatabytitle Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
+	public ArrayList<Bbs> getDatabytype(String type) {
+		String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			//pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Bbs bbsvo = new Bbs();
+				bbsvo.setBbs_id(rs.getInt("bbs_id"));
+				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				bbsvo.setBbs_date(rs.getString("bbs_date"));
+				bbsvo.setBbs_content(rs.getString("bbs_content"));
+				bbsvo.setBbs_available(rs.getInt("bbs_available"));
+				bbsvo.setBbs_type(rs.getString("bbs_type"));
+				bbslist.add(0, bbsvo);
+			}
+			rs.close();
+		} catch(Exception e){
+			System.out.println("getDatabytitle Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
 	public int delete(int bbs_id){
 		String SQL = "UPDATE BBS SET bbs_available = 0 where bbs_id = ?";
 		try {
@@ -159,5 +272,23 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	void disconnect() {
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

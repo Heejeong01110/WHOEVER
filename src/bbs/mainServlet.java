@@ -48,12 +48,15 @@ public class mainServlet extends HttpServlet {
 		if(cmd.equals("search")) {
 			BbsDAO bbsdao = new BbsDAO();
 			String searchType = request.getParameter("searchType");
-			if(searchType.equals("title")) {
-				//ArrayList<Bbs> bbslist = bbsdao.getDatabytitle(request.getParameter("searchData"));
-				//request.setAttribute("bbslist", bbslist);
+			if(searchType.equals("all")) {
+				ArrayList<Bbs> bbslist = bbsdao.getAll(request.getParameter("searchData"));
+				request.setAttribute("bbslist", bbslist);
+			} else if(searchType.equals("title")) {
+				ArrayList<Bbs> bbslist = bbsdao.getDatabytitle(request.getParameter("searchData"));
+				request.setAttribute("bbslist", bbslist);
 			} else if(searchType.equals("type")) {
-				//ArrayList<Bbs> bbslist = bbsdao.getDatabytype(request.getParameter("searchData"));
-				//request.setAttribute("bbslist", bbslist);
+				ArrayList<Bbs> bbslist = bbsdao.getDatabytype(request.getParameter("searchData"));
+				request.setAttribute("bbslist", bbslist);
 			}
 			
 			RequestDispatcher view = request.getRequestDispatcher("main.jsp");

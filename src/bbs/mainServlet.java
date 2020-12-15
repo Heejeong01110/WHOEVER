@@ -49,20 +49,22 @@ public class mainServlet extends HttpServlet {
 			BbsDAO bbsdao = new BbsDAO();
 			String searchType = request.getParameter("searchType");
 			
-			if(request.getParameter("searchData")=="") {
-				request.setAttribute("isEmpty", 1);
-			}
-			
 			if(searchType.equals("all")) {
 				ArrayList<Bbs> bbslist = bbsdao.getAll(request.getParameter("searchData"));
 				request.setAttribute("bbslist", bbslist);
+				request.setAttribute("isEmpty", 0);
 			} else if(searchType.equals("title")) {
 				ArrayList<Bbs> bbslist = bbsdao.getDatabytitle(request.getParameter("searchData"));
 				request.setAttribute("bbslist", bbslist);
+				request.setAttribute("isEmpty", 0);
 			} else if(searchType.equals("type")) {
 				ArrayList<Bbs> bbslist = bbsdao.getDatabytype(request.getParameter("searchData"));
 				request.setAttribute("bbslist", bbslist);
+				request.setAttribute("isEmpty", 0);
 			}
+			
+			if(request.getParameter("searchData")=="")
+				request.setAttribute("isEmpty", 1);
 			
 			RequestDispatcher view = request.getRequestDispatcher("main.jsp");
 			view.forward(request, response);

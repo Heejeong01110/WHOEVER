@@ -133,9 +133,12 @@
       ArrayList<Bbs> bbslist = (ArrayList<Bbs>)request.getAttribute("bbslist");
       if(bbslist!=null) {
     	  vButton = 0;
-    	  if((int)request.getAttribute("isEmpty") == 1)
+    	  if((int)request.getAttribute("isEmpty") == 1){
+    		  out.println("<script> alert('검색어를 입력해주세요!'); window.history.back(); </script>");
+    		  
+    	  }
     		  //여기부터 하면 됨
-    		  System.out.println("nullllllll");
+    		  //out.println(" <h2 class='alert alert-danger'> 검색어를 입력하세요! </h2>");
          for(Bbs B: bbslist){
       %>
    <a href="view.jsp?bbs_id=<%= B.getBbs_id()%>"> <!-- 클릭 시 링크 설정 -->

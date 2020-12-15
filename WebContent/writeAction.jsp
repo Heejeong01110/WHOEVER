@@ -43,8 +43,6 @@
 			script.println("alert('로그인을 하세요.')");
 			script.println("location.href = './login/login.jsp'");
 			script.println("</script>");
-		}
-			
 		} else{
 			if(bbs.getBbs_title() == null || bbs.getBbs_content() == null){
 				PrintWriter script = response.getWriter();

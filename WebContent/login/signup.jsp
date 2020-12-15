@@ -2,7 +2,7 @@
 <html>
 <head>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import = "user.sEmail" %>
+<%@ page import = "javax.mail.*" %>
 
 <!-- CSS -->
 <link rel="stylesheet"
@@ -19,8 +19,7 @@
 	crossorigin="anonymous"></script>
 <!-- Bootstrap core CSS -->
 <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <title>WHOEVER SIGNUP</title>
 <style>
 .app {
@@ -86,8 +85,6 @@
 	String pwd = request.getParameter("signup_password");
 	String pwd_re = request.getParameter("signup_password_re");
 	String name = request.getParameter("signup_name");
-	
-	//sEmail sendM = new sEmail();
 %>
 <!-- 값 입력여부 확인 -->
 </head>
@@ -172,9 +169,12 @@
 			return false;
 		}//조건 만족 시 
 		else {
-			//이메일 전송
-			//sendM.sendEmail();
-			alert("전송확인");
+			//1. send_email.jsp로 사용자 email 전송하기.
+			var url = "send_email.jsp?email=" + email;
+			window.open(url,"send_email","toolbar=no,location=no,status=no,menubar=no,scrollbar=no,resizable=no,width=300,height=180");
+			
+			//2. 그 안에서 java 함수 사용해서 메일 전송
+			//3. jsp에서 다시 여기로 값 받아오기
 			//인증 완료 시 파란색
 			/*
 			emailhint.style.color="blue";

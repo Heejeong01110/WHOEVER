@@ -248,6 +248,34 @@ public class BbsDAO {
 		return bbslist;
 	}
 	
+	public ArrayList<Bbs> getDatabyContent(String content) {
+		String SQL = "SELECT * FROM bbs WHERE bbs_content LIKE '%"+ content +"%'";
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			//pstmt.setString(1, title);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Bbs bbsvo = new Bbs();
+				bbsvo.setBbs_id(rs.getInt("bbs_id"));
+				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				bbsvo.setBbs_date(rs.getString("bbs_date"));
+				bbsvo.setBbs_content(rs.getString("bbs_content"));
+				bbsvo.setBbs_available(rs.getInt("bbs_available"));
+				bbsvo.setBbs_type(rs.getString("bbs_type"));
+				if(bbsvo.getBbs_available() == 1)
+					bbslist.add(0, bbsvo);
+			}
+			rs.close();
+		} catch(Exception e){
+			System.out.println("getDatabytitle Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
 	public ArrayList<Bbs> getDatabyTag(String tag) {
 		//String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
 		String SQL = "SELECT b.bbs_id, b.bbs_title, b.user_id, b.bbs_content, b.bbs_available, b.bbs_type, b.bbs_date "

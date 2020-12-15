@@ -121,6 +121,7 @@
              <option value="all"<c:if test="${searchType == 'all'}">selected</c:if>>전체</option>
              <option value="title"<c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
              <option value="tag"<c:if test="${searchType == 'tag'}">selected</c:if>>태그</option>
+             <option value="content"<c:if test="${searchType == 'content'}">selected</c:if>>내용</option>
           </select>
           <input class="search__input" type="text" placeholder="Search" name = "searchData">
           <p> <!-- <input type="submit" value = "전송"> -->

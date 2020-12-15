@@ -57,8 +57,6 @@
 	                    addListHtml += "<div class=\"bbs-header-number\">"+"2 / 5"+"</div>"
 	                    addListHtml += "</div>";
 	                    addListHtml += "</div>";
-	                    //addListHtml += "<h1>"+webData[i].bbs_title+"</h1>";
-	                    //console.log(webData[i].bbs_type);
 	                    //카트 바디
 	                    addListHtml += "<div class=\"bbs-body\">";
 	                    addListHtml += "<div class=\"bbs-body-header\">";
@@ -69,9 +67,6 @@
 	                    addListHtml += "<p class=\"bbs-body-description\">"+webData[i].bbs_content+"</p>";
 	                    //카트바디 본문
 	                    //카트바디 푸터
-	                    
-	                    // "++"
-	                    
 	                    addListHtml += "<div class=\"bbs-body-footer\">";
 	                    addListHtml += "<hr style=\"margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31\">"
 	                    addListHtml += "<i class=\"icon icon-view_count\"></i>"+"조회 38회";
@@ -89,10 +84,6 @@
 	        }//success
 	    });
 	    
-	  
-	    
-	    
-	     
 	}
 </script>
 
@@ -100,8 +91,6 @@
 	<jsp:include page="header.jsp" />
 	<%
 		int oncePage = 4; //한번에 출력되는 최대 게시글
-		int curPage = 4; //현재 총 화면에 출력되고 있는 게시글
-		int maxPage=0; //게시글 총 갯수
 		
 		String msg = request.getParameter("msg");
 		String loginId = (String) session.getAttribute("sessionId");
@@ -116,8 +105,6 @@
 		TagDAO tagDAO = new TagDAO();
 		ArrayList<Bbs> list = bbsDAO.getList();
 		ArrayList<Tag> tlist = tagDAO.getHash();
-		
-		maxPage = list.size();
 		
 		for(int i=0;i<oncePage;i++){
 %>
@@ -156,6 +143,7 @@
 <%		
 		}//카드 출력 종료
 %>	
+	<!-- 더보기 클릭 시 출력 -->
 	<div id="listBody">
 	</div>
 	

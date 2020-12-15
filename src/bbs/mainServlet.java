@@ -57,8 +57,8 @@ public class mainServlet extends HttpServlet {
 				ArrayList<Bbs> bbslist = bbsdao.getDatabytitle(request.getParameter("searchData"));
 				request.setAttribute("bbslist", bbslist);
 				request.setAttribute("isEmpty", 0);
-			} else if(searchType.equals("type")) {
-				ArrayList<Bbs> bbslist = bbsdao.getDatabytype(request.getParameter("searchData"));
+			} else if(searchType.equals("tag")) {
+				ArrayList<Bbs> bbslist = bbsdao.getDatabyTag(request.getParameter("searchData"));
 				request.setAttribute("bbslist", bbslist);
 				request.setAttribute("isEmpty", 0);
 			}

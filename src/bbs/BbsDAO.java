@@ -164,7 +164,8 @@ public class BbsDAO {
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
 				bbsvo.setBbs_type(rs.getString("bbs_type"));
-				bbslist.add(0, bbsvo);
+				if(bbsvo.getBbs_available() == 1)
+					bbslist.add(0, bbsvo);
 			}
 		} catch(Exception e){
 			System.out.println("allElement Exception" + e.getMessage());
@@ -189,7 +190,6 @@ public class BbsDAO {
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) {
-					
 					boolean addFlag = true;
 					
 					Bbs bbsvo = new Bbs();
@@ -207,8 +207,7 @@ public class BbsDAO {
 							break;
 						}
 					}
-					
-					if(addFlag)
+					if(addFlag && (bbsvo.getBbs_available() == 1))
 						bbslist.add(0, bbsvo);
 				}
 				rs.close();
@@ -237,7 +236,8 @@ public class BbsDAO {
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
 				bbsvo.setBbs_type(rs.getString("bbs_type"));
-				bbslist.add(0, bbsvo);
+				if(bbsvo.getBbs_available() == 1)
+					bbslist.add(0, bbsvo);
 			}
 			rs.close();
 		} catch(Exception e){
@@ -248,8 +248,13 @@ public class BbsDAO {
 		return bbslist;
 	}
 	
-	public ArrayList<Bbs> getDatabytype(String type) {
-		String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
+	public ArrayList<Bbs> getDatabyTag(String tag) {
+		//String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
+		String SQL = "SELECT b.bbs_id, b.bbs_title, b.user_id, b.bbs_content, b.bbs_available, b.bbs_type, b.bbs_date "
+				+ "FROM bbs AS b "
+				+ "JOIN tag AS t "
+				+ "ON b.bbs_id = t._bbs_id "
+				+ "WHERE t.tag_name LIKE '%"+tag+"%'";
 		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -264,14 +269,14 @@ public class BbsDAO {
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
 				bbsvo.setBbs_type(rs.getString("bbs_type"));
-				bbslist.add(0, bbsvo);
+				if(bbsvo.getBbs_available() == 1)
+					bbslist.add(0, bbsvo);
 			}
 			rs.close();
 		} catch(Exception e){
 			System.out.println("getDatabytitle Exception" + e.getMessage());
 			e.printStackTrace();
 		}
-		
 		return bbslist;
 	}
 	

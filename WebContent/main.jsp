@@ -120,7 +120,7 @@
           <select id="searchType" name="searchType">
              <option value="all"<c:if test="${searchType == 'all'}">selected</c:if>>전체</option>
              <option value="title"<c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
-             <option value="type"<c:if test="${searchType == 'type'}">selected</c:if>>종류</option>
+             <option value="tag"<c:if test="${searchType == 'tag'}">selected</c:if>>태그</option>
           </select>
           <input class="search__input" type="text" placeholder="Search" name = "searchData">
           <p> <!-- <input type="submit" value = "전송"> -->
@@ -137,8 +137,6 @@
     		  out.println("<script> alert('검색어를 입력해주세요!'); window.history.back(); </script>");
     		  
     	  }
-    		  //여기부터 하면 됨
-    		  //out.println(" <h2 class='alert alert-danger'> 검색어를 입력하세요! </h2>");
          for(Bbs B: bbslist){
       %>
    <a href="view.jsp?bbs_id=<%= B.getBbs_id()%>"> <!-- 클릭 시 링크 설정 -->

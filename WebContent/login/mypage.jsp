@@ -3,6 +3,8 @@
 <head>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.*, java.sql.*, java.io.*"%>
+<%@ page import="org.apache.commons.fileupload.*" %>
+
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css " />
 <link rel="stylesheet" href="../resources/css/card.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,6 +13,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="../resources/js/bootstrap.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
 .parent {
@@ -63,6 +66,7 @@
 	String name=null;
 	String email=null;
 	String status_msg=null;
+	String user_image = "defaultusrimg.jpg";
 	//db 읽어오기
 	String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	Connection con = null;
@@ -75,12 +79,13 @@
 		ResultSet rs;
 		String sql;
 
-		sql = " SELECT name, email, status_msg FROM user WHERE id = '" + loginId+"'";
+		sql = " SELECT name, email, user_image, status_msg FROM user WHERE id = '" + loginId+"'";
 		rs = state.executeQuery(sql);
 
 		while (rs.next()) {
 			name = rs.getString("name");
 			email = rs.getString("email");
+			user_image = rs.getString("user_image");
 			status_msg = rs.getString("status_msg");
 		}
 
@@ -115,9 +120,33 @@
 	<div class="parent">
 		<div class="mypage_image_container">
 			<div class="image_view">
-				<a href="#">이미지가 들어갈 자리입니다.</a><br>
-				<a href="#">이미지 추가 버튼 자리입니다.</a>
+<%
+			System.out.println(user_image);
+			if("defaultusrimg.jpg".equals(user_image)){
+				//기본이미지 출력
+%>
+				<img src="../resources/images/defaultusrimg.jpg" width="auto" height="100" border="0" margin="10">			
+<%
+			}else{
+				//사용자 설정 이미지 출력
+%>
+				<img src="../resources/images/<%=user_image %>" width="auto" height="100" border="0" margin="10">
+<%				
+			}
+%>
+				<br>
+				<!-- 사진 업로드 -->
+				<form action="mypage_image.jsp" method="post" enctype="Multipart/form-data">
+					<input type = "file" name="filename">
+					<input type="submit" value="업로드">
+				</form>
+				<!-- 사진 초기화-->
+				<button type="button" class="remove_img" onClick="location.href='mypage_image.jsp?filedel='no'" >사진 삭제</button>
 			</div>
+			
+			
+			
+			
 			<div class="info_view">
 				<p>아이디 : <%out.println(loginId); %></p>
 				<p><%out.println("이름 : "+name); %></p>

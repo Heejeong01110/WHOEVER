@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="EUC-KR"%> 
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> 
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.*, java.sql.*, java.io.*"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	//¼¼¼Ç ¹Þ¾Æ¿À±â
+	//ì„¸ì…˜ ë°›ì•„ì˜¤ê¸°
 	String loginId = (String) session.getAttribute("sessionId");
-	//status Á¤º¸ ¹Þ¾Æ¿À±â
+	//status ì •ë³´ ë°›ì•„ì˜¤ê¸°
 	String status_input = request.getParameter("status_input");
-	//db ÀÐ¾î¿À±â
+	//db ì½ì–´ì˜¤ê¸°
 	String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -28,7 +28,7 @@
 	}catch (SQLException e) {
 		System.out.println("[SQL Error : " + e.getMessage() + "]");
 	} catch (ClassNotFoundException e1) {
-		System.out.println("[JDBC Connector Driver ¿À·ù : " + e1.getMessage() + "]");
+		System.out.println("[JDBC Connector Driver ì˜¤ë¥˜ : " + e1.getMessage() + "]");
 	} finally {
 		if (pstmt != null) {
 			try {

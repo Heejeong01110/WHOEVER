@@ -49,11 +49,11 @@ public class mainServlet extends HttpServlet {
 			BbsDAO bbsdao = new BbsDAO();
 			String searchType = request.getParameter("searchType");
 			if(searchType.equals("title")) {
-				ArrayList<Bbs> bbslist = bbsdao.getDatabytitle(request.getParameter("searchData"));
-				request.setAttribute("bbslist", bbslist);
+				//ArrayList<Bbs> bbslist = bbsdao.getDatabytitle(request.getParameter("searchData"));
+				//request.setAttribute("bbslist", bbslist);
 			} else if(searchType.equals("type")) {
-				ArrayList<Bbs> bbslist = bbsdao.getDatabytype(request.getParameter("searchData"));
-				request.setAttribute("bbslist", bbslist);
+				//ArrayList<Bbs> bbslist = bbsdao.getDatabytype(request.getParameter("searchData"));
+				//request.setAttribute("bbslist", bbslist);
 			}
 			
 			RequestDispatcher view = request.getRequestDispatcher("main.jsp");

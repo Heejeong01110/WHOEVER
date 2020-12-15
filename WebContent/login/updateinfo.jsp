@@ -69,6 +69,12 @@
 	request.setCharacterEncoding("UTF-8");
 	//세션 받아오기
 	String loginId = (String) session.getAttribute("sessionId");
+	String loginUserId = (String) session.getAttribute("sessionUserId"); //user 인덱스번호
+	
+	//로그인 필요한 서비스의 경우
+	if(loginId==null ||loginUserId==null){
+		out.println("<script> alert(\"로그인이 필요합니다.\"); window.location= \"login.jsp\"; </script>");
+	}
 	String name=null;
 	String email=null;
 	String status_msg=null;

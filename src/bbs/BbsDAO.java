@@ -17,15 +17,17 @@ public class BbsDAO {
 	
 	public BbsDAO() {
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			String dbURL = "jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?useSSL=false";
 			String dbID = "whoever";
 			String dbPassword = "Whoever12#";
-			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
 		}catch(Exception e) {
 			e.printStackTrace();	
 		}
-	}	public String getDate() {
+	}	
+	
+	public String getDate() {
 		String SQL = "SELECT NOW()";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -129,6 +131,7 @@ public class BbsDAO {
 	
 		return null;
 	}
+	
 	
 	public int update(int bbs_id, String bbs_title, String bbs_content, String bbs_type) {
 		String SQL = "UPDATE BBS SET bbs_title = ?, bbs_content = ?, bbs_type = ? WHERE bbs_id = ?";

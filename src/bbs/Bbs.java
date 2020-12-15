@@ -1,7 +1,6 @@
 package bbs;
 
 public class Bbs {
-
 	private int bbs_id;
 	private String bbs_title;
 	private String user_id;
@@ -61,4 +60,5 @@ public class Bbs {
 		this.bbs_type = bbs_type;
 	}
 	
+
 }

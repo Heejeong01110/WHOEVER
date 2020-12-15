@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import tag.Tag;
 import bbs.Bbs;
@@ -47,7 +48,7 @@ public class TagDAO {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getInt(1) + 1;
+				return rs.getInt(1);
 			}
 			return 1;
 		} catch(Exception e){
@@ -61,11 +62,12 @@ public class TagDAO {
 	public int Hashtag(String[] tagArray) {
 		String SQL = "INSERT INTO tag VALUES (?, ?, ?)";
 		try {
+			
+			
 			for(int i = 0; i<tagArray.length; i++) {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			//pstmt.setInt(1, getNext());
-			
-			pstmt.setInt(1, i+1);
+			//pstmt.setInt(1, i+1);
+			pstmt.setInt(1, getNext());
 			pstmt.setString(2, tagArray[i]);
 			pstmt.setInt(3, getBbs());
 			pstmt.executeUpdate();
@@ -103,8 +105,8 @@ public class TagDAO {
 		return null;
 	}
 	
-	public Tag getTag(int bbs_id) {
-		String SQL = "SELECT * FROM tag where bbs_id = ?";
+	/*public Tag getTag(int bbs_id) {
+		String SQL = "SELECT * FROM tag where _bbs_id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbs_id);
@@ -112,18 +114,56 @@ public class TagDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				Tag tag = new Tag();
-				tag.setTag_id(rs.getInt(1));
+				//tag.setTag_id(rs.getInt(1));
 				//category.setCategory_name(rs.getString(2));
 				tag.setTag_name(rs.getString(2));
-				tag.set_bbs_id(rs.getInt(3));
+				//tag.set_bbs_id(rs.getInt(3));
 				return tag;
 				} 
 			}catch(Exception e){
 			e.printStackTrace();
 		}
-	
+		return null;
+	}*/
+	public String getTag(int bbs_id) throws SQLException {
+		String SQL = "SELECT tag_name from tag where _bbs_id = " + bbs_id;
+		int cnt = 0;
+		PreparedStatement pstmt = conn.prepareStatement(SQL);
+		//pstmt.setInt(1, bbs_id);
+		rs = pstmt.executeQuery(SQL);
+		//String SQL = "SELECT tag_name FROM tag where _bbs_id = ?";
+		String tag = null;
+		String tag2 = "";
+		try {
+			//PreparedStatement pptmt = conn.prepareStatement(SQL);
+			
+			//pstmt.setInt(1, getNext() - );
+			//rs = pstmt.executeQuery();
+			while(rs.next()) {
+			//	String[] tagArray = new String[cnt];//rs.getString("tag_name");
+				
+				/*for(int i = 0; i < cnt; i++){
+					tag = rs.getString("tag_name");
+					tagArray[i] = tag;
+					tag2 = tag2 + tag;
+				}*/
+				tag = rs.getString("tag_name");
+				tag2 = tag2+ " " + tag;
+				//tag.setTag_id(rs.getInt(1));
+				//category.setCategory_name(rs.getString(2));
+				//tag = rs.getString("tag_name");
+				//tag2 = tag2 + tag;
+				
+				//tag.set_bbs_id(rs.getInt(3));
+				} 
+			System.out.println("태그 : "+ tag2+ " " + cnt);
+			return tag2;
+			}catch(Exception e){
+			e.printStackTrace();
+		}
 		return null;
 	}
+	
 	
 	public ArrayList<Tag> getHash() {
 		String SQL = "SELECT * FROM tag";
@@ -145,6 +185,18 @@ public class TagDAO {
 		}
 	
 		return null;
+	}
+	
+	public int delete(int bbs_id){
+		String SQL = "DELETE FROM TAG where _bbs_id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbs_id);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 	
 }

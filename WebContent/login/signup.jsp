@@ -2,6 +2,8 @@
 <html>
 <head>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import = "user.sEmail" %>
+
 <!-- CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -85,12 +87,7 @@
 	String pwd_re = request.getParameter("signup_password_re");
 	String name = request.getParameter("signup_name");
 	
-	if(false/*signup_idckeck.ckeck(id)*/){
-		out.println("<script>");
-		out.println("alert(\"아이디가 중복됩니다. 다른아이디를 선택해주세요.\")");
-		out.println("location.href=\"signup.jsp\"");
-		out.println("</script>");
-	}
+	//sEmail sendM = new sEmail();
 %>
 <!-- 값 입력여부 확인 -->
 </head>
@@ -141,7 +138,8 @@
 			return false;
 		}
 		document.signup_info.submit();
-	}//checkmember emd
+	}//checkmember end
+
 
 	function checkEmail() {
 		var emailhint = document.getElementById("emailck"); //이메일 밑 힌트문구
@@ -173,13 +171,19 @@
 			document.signup_info.signup_email.focus();
 			return false;
 		}//조건 만족 시 
-		else {  
+		else {
+			//이메일 전송
+			//sendM.sendEmail();
+			alert("전송확인");
+			//인증 완료 시 파란색
+			/*
 			emailhint.style.color="blue";
 			$("#emailck").text("이메일 인증이 완료되었습니다.");
 			$("#signup_email").attr("readonly",true);
 			//document.getElementById("signup_email") = ture;
 			//emailinput.disabled=true; //성공하면 수정 못함
 			document.signup_info.signup_id.focus();
+			*/
 			return true;
 		}
 		//메일 보내는 동작 수행
@@ -259,6 +263,3 @@
 	</div>
 </body>
 </html>
-
-<!-- 세션 예외 처리 -->
-<!-- gmail에서 실제로 인증받아서 인증되게 추가 -->

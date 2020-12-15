@@ -97,6 +97,12 @@
         
 	</style>
 	
+	<script type="text/javascript">
+	function signupGo(){
+		window.location.href = "http://localhost:8080/WHOEVER/login/signup.jsp";
+	}
+	</script>
+	
 <title>WHOEVER LOGIN</title>
 </head>
 
@@ -130,7 +136,7 @@
   							<br>
   							<button type="submit" class="member_button_login"><strong>로그인</strong></button>
   						</form>
-  						<button type="button" class="member_button_login"  onclick = "location.href = signup.jsp"><strong>회원가입</strong></button>
+  						<button type="button" class="member_button_login"  onclick = "signupGo()"><strong>회원가입</strong></button>
   					</div>
   				</div>
   			</div>

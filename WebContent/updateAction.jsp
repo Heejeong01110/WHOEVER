@@ -36,7 +36,7 @@
 				script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbs_id);
-		/*Tag tagDAO = new TagDAO().getTag(bbs_id);*/
+		//Tag tagDAO = new TagDAO().getTag(bbs_id);
 		if(!user_id.equals(bbs.getUser_id())){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -68,7 +68,9 @@
 				//int hash1 = categoryDAO.Hashtag(tagArray);
 				
 				int result = bbsDAO.update(bbs_id, request.getParameter("bbs_title"), request.getParameter("bbs_content"),type);
-				int hash2 = tagDAO.Hashtag(tagArray);
+				int delete = tagDAO.delete(bbs_id);
+				int insert= tagDAO.Hashtag(tagArray);
+			
 				out.println("타입: \n"+ bbs.getBbs_type());
 				if(result == -1){
 					PrintWriter script = response.getWriter();
@@ -77,10 +79,24 @@
 					script.println("history.back()");
 					script.println("</script>");
 				}
+				if(delete == -1){
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('태그 삭제에 실패했습니다.')");
+					script.println("history.back()");
+					script.println("</script>");
+				}
+				/*if(insert == -1){
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('태그 수정에 실패했습니다.')");
+					script.println("history.back()");
+					script.println("</script>");
+				}*/
 				else{
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("location.href = 'bbs.jsp'");
+					script.println("location.href = 'view.jsp?bbs_id="+bbs_id+"'");
 					script.println("</script>");
 				}
 			}

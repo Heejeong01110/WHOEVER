@@ -71,7 +71,7 @@
 	{
 		opener.document.signup_info.id.value="<%=id%>";
 		//값이 안바뀜
-		//window.opener.document.getElementById("idck").text = "아이디 인증이 완료되었습니다.";
+		window.opener.document.getElementById("idck").val = "아이디 인증이 완료되었습니다.";
 		opener.document.getElementById("idck").style.color="blue";
 		opener.document.getElementById("signup_id").readOnly = true;
 		

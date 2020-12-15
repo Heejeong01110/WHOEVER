@@ -2,13 +2,9 @@
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "tag.TagDAO" %>
 <%@ page import = "category.CategoryDAO" %>
-<%@ page import = "java.io.*" %>
+<%@ page import = "java.io.PrintWriter" %>
 <% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id = "bbs" class = "bbs.Bbs" scope="page"/>
-<jsp:useBean id = "category" class = "category.Category" scope="page"/>
 <jsp:useBean id = "tag" class = "tag.Tag" scope="page"/>
-<jsp:setProperty name = "bbs" property = "bbs_title"/>
-<jsp:setProperty name = "bbs" property = "bbs_content"/>
 <jsp:setProperty name = "tag" property = "tag_name"/>
 <html>
 <head>
@@ -17,17 +13,37 @@
 </head>
 <body>
 	<%
-		String user_id = null;
+	//String loginId = (String) session.getAttribute("sessionId");
+	 //  String loginUserId = (String) session.getAttribute("sessionUserId"); //user 인덱스번호
+	   
+	   //로그인 필요한 서비스의 경우
+	   /*if(loginId==null ||loginUserId==null){
+	      out.println("<script> alert(\"로그인이 필요합니다.\"); window.location= \"login/login.jsp\"; </script>");}*/
+		Bbs bbs = new Bbs();
+		BbsDAO bbsDAO = new BbsDAO();
+		TagDAO tagDAO = new TagDAO();
+		//String user_id = null;
+		 String loginUserId = null;
+		 String loginId = null;
+		 String title = request.getParameter("bbs_title");
+		 String content = request.getParameter("bbs_content");
+		//세션 받아오기
+	  
 		//String user_id = (String) session.getAttribute("sessionId");
 		if(session.getAttribute("sessionId") != null){
-			user_id = (String)session.getAttribute("sessionId");
+			  loginId = (String) session.getAttribute("sessionId"); //user 이름
+			  //loginUserId =  (String) session.getAttribute("sessionUserId"); //user 인덱스번호
+			 
+			 // out.println("id:"+loginUserId + " "+ loginId);
 		}
-		if(user_id == null){
+		
+		if(loginId.equals(null)){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 하세요.')");
 			script.println("location.href = './login/login.jsp'");
 			script.println("</script>");
+		}
 			
 		} else{
 			if(bbs.getBbs_title() == null || bbs.getBbs_content() == null){
@@ -46,12 +62,10 @@
 				for(int i = 0; i < tagArray.length; i++){
 				System.out.println("카테고리\n" + tagArray[i]);
 				}
-				/*for(int i = 0; i < tagArray.length; i++){
-					tagContent = tagArray[i];
-				}*/
+				
 				//int hash1 = categoryDAO.Hashtag(tagArray);
 				
-				int result = bbsDAO.write(bbs.getBbs_title(), user_id, bbs.getBbs_content() ,type);
+				int result = bbsDAO.write(title,loginId, content ,type);
 				int hash2 = tagDAO.Hashtag(tagArray);
 				out.println("타입: \n"+ bbs.getBbs_type());
 				if(result == -1){
@@ -68,8 +82,8 @@
 					script.println("</script>");
 				}
 			}
-			
-		}
+		 }
+	
 	%>
 </body>
 </html>

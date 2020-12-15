@@ -39,55 +39,53 @@
 	        
 	        success : function(webData) {
 	        	console.log(webData);
-	        	//alert(webData.hashMapList[0].bbs_title);
-	        	
-	            if(webData.length < 4){ //게시글 전체 수가 4개보다 적을 때??
-	                $("#more").remove();   // 더보기 버튼을 div 클래스로 줘야 할 수도 있음
-	            }else{
-	            	var addListHtml ="";
-	            	if(webData.length > 0){
-	                	for(var i=0; i<webData.length;i++) {
-	                		//alert(webData);
-	                    	var idx = Number(startNum)*4+Number(i)+1;   
-		                    	// 글번호 : startNum 이  10단위로 증가되기 때문에 startNum +i (+1은 i는 0부터 시작하므로 )
-		                    addListHtml += "<a href=\"view.jsp?bbs_id="+webData[i].bbs_id +"\">";
-		                    addListHtml += "<div class=\"bbs\">";
-		                    //bbs 헤더
-		                    addListHtml += "<div class=\"bbs-header\">";
-		                    addListHtml += "<div class=\"bbs-header-is_closed\">"
-		                    addListHtml +=" <div class=\"bbs-header-text\">"+webData[i].bbs_type+"</div>";
-		                    addListHtml += "<div class=\"bbs-header-number\">"+"2 / 5"+"</div>"
-		                    addListHtml += "</div>";
-		                    addListHtml += "</div>";
-		                    //addListHtml += "<h1>"+webData[i].bbs_title+"</h1>";
-		                    //console.log(webData[i].bbs_type);
-		                    //카트 바디
-		                    addListHtml += "<div class=\"bbs-body\">";
-		                    addListHtml += "<div class=\"bbs-body-header\">";
-		                    addListHtml += "<h1>"+webData[i].bbs_title+"</h1>"
-		                    addListHtml += "<p class=\"bbs-body-hashtag\"></p>"
-		                    addListHtml += "<p class=\"bbs-body-nickname\">작성자:"+webData[i].user_id+"</p>"
-		                    addListHtml += "</div>";
-		                    addListHtml += "<p class=\"bbs-body-description\">"+webData[i].bbs_content+"</p>";
-		                    //카트바디 본문
-		                    //카트바디 푸터
-		                    
-		                    // "++"
-		                    
-		                    addListHtml += "<div class=\"bbs-body-footer\">";
-		                    addListHtml += "<hr style=\"margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31\">"
-		                    addListHtml += "<i class=\"icon icon-view_count\"></i>"+"조회 38회";
-		                    addListHtml += "<i class=\"reg_date\">"+webData[i].bbs_date.substring(0 , 11)+webData[i].bbs_date.substring(11, 13)+"시 "+webData[i].bbs_date.substring(14, 16) + "분 " + webData[i].bbs_date.substring(17, 19) + "초";
-		                    addListHtml += "</i>"
-		                    addListHtml += "</div>";
-		                    
-		                    addListHtml += "</div>";
-		                    addListHtml += "</div>";
-		                    addListHtml += "</a>";
-	                	}
-	                	$("#listBody").append(addListHtml);
-	            	}
-	            }
+            	var addListHtml ="";
+            	if(webData.length > 0){
+            		if(webData.length < 4){ //게시글 전체 수가 4개보다 적을 때??
+    	                $("#more").remove();   // 더보기 버튼을 div 클래스로 줘야 할 수도 있음
+    	            }
+                	for(var i=0; i<webData.length;i++) {
+                		//alert(webData);
+                    	var idx = Number(startNum)*4+Number(i)+1;   
+	                    	// 글번호 : startNum 이  10단위로 증가되기 때문에 startNum +i (+1은 i는 0부터 시작하므로 )
+	                    addListHtml += "<a href=\"view.jsp?bbs_id="+webData[i].bbs_id +"\">";
+	                    addListHtml += "<div class=\"bbs\">";
+	                    //bbs 헤더
+	                    addListHtml += "<div class=\"bbs-header\">";
+	                    addListHtml += "<div class=\"bbs-header-is_closed\">"
+	                    addListHtml +=" <div class=\"bbs-header-text\">"+webData[i].bbs_type+"</div>";
+	                    addListHtml += "<div class=\"bbs-header-number\">"+"2 / 5"+"</div>"
+	                    addListHtml += "</div>";
+	                    addListHtml += "</div>";
+	                    //addListHtml += "<h1>"+webData[i].bbs_title+"</h1>";
+	                    //console.log(webData[i].bbs_type);
+	                    //카트 바디
+	                    addListHtml += "<div class=\"bbs-body\">";
+	                    addListHtml += "<div class=\"bbs-body-header\">";
+	                    addListHtml += "<h1>"+webData[i].bbs_title+"</h1>"
+	                    addListHtml += "<p class=\"bbs-body-hashtag\"></p>"
+	                    addListHtml += "<p class=\"bbs-body-nickname\">작성자:"+webData[i].user_id+"</p>"
+	                    addListHtml += "</div>";
+	                    addListHtml += "<p class=\"bbs-body-description\">"+webData[i].bbs_content+"</p>";
+	                    //카트바디 본문
+	                    //카트바디 푸터
+	                    
+	                    // "++"
+	                    
+	                    addListHtml += "<div class=\"bbs-body-footer\">";
+	                    addListHtml += "<hr style=\"margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31\">"
+	                    addListHtml += "<i class=\"icon icon-view_count\"></i>"+"조회 38회";
+	                    addListHtml += "<i class=\"reg_date\">"+webData[i].bbs_date.substring(0 , 11)+webData[i].bbs_date.substring(11, 13)+"시 "+webData[i].bbs_date.substring(14, 16) + "분 " + webData[i].bbs_date.substring(17, 19) + "초";
+	                    addListHtml += "</i>"
+	                    addListHtml += "</div>";
+	                    
+	                    addListHtml += "</div>";
+	                    addListHtml += "</div>";
+	                    addListHtml += "</a>";
+                	}
+                	$("#listBody").append(addListHtml);
+            	}//if 종료
+	            
 	        }//success
 	    });
 	    

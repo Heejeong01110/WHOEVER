@@ -23,7 +23,7 @@
 	  ArrayList<Chatting> list = chattingDAO.getMyRoomList(loginId);
 	  out.println("<div id=\"wrapper\">");
 	  for(Chatting i : list){
-		 out.println("<a href=\"\">"); 
+		 out.println("<a href=\"http://"+"localhost:8080/WHOEVER/message/transform.jsp?type=1&num="+i.getRoom_id()+"\">"); 
 		 out.println("<div class=\"list\">");
 		 
 		 out.println("<div class=\"img-wrapper\">");

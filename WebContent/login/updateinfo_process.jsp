@@ -12,7 +12,14 @@
 	String pw_re = request.getParameter("update_password_re");
 	String email = request.getParameter("update_email");
 
-	
+
+	//이 값이 null이면 초기화 버튼 클릭
+	if(loginId==null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
+	}
 	String checkpw=null;
 	//db 읽어오기
 	String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";

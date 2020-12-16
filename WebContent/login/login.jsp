@@ -2,6 +2,7 @@
 <html>
 <head>
 	<%@ page contentType="text/html; charset=utf-8"%>
+	<%@ page import = "java.io.PrintWriter" %>
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<!-- jQuery and JS bundle w/ Popper.js -->
@@ -102,6 +103,15 @@
 		window.location.href = "http://localhost:8080/WHOEVER/login/signup.jsp";
 	}
 	</script>
+	<%
+		String loginId = (String) session.getAttribute("sessionId");
+		if(loginId!=null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("location.href = 'mypage.jsp'");
+			script.println("</script>");
+		}
+	%>
 	
 <title>WHOEVER LOGIN</title>
 </head>
@@ -130,9 +140,7 @@
   						<form action="login_process.jsp" method="post">
   							<input id="login_id" class="member_input_box"type="text"name="login_id" placeholder="아이디">
   							<input id="login_password" class="member_input_box"type="password"name="login_password"placeholder="비밀번호">
-  							<span style="font-weight:400;font-size:14px;line-eight:20px;color:#1ea1f7;float:right;margin-top:20px;">
-  								<a style="font-weight: 400;font-size: 14px;line-height: 20px;color: #1ea1f7;text-decoration: underline;"href="findpw.jsp">아이디, 비밀번호를 잊으셨나요?</a>
-  							</span>
+  							
   							<br>
   							<button type="submit" class="member_button_login"><strong>로그인</strong></button>
   						</form>

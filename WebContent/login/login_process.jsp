@@ -5,9 +5,18 @@
 <% 
 	request.setCharacterEncoding("UTF-8"); 
 	
+	String loginId = (String) session.getAttribute("sessionId");
 	String id = request.getParameter("login_id");
 	String password = request.getParameter("login_password");
+	
+	if(loginId!=null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href = 'mypage.jsp'");
+		script.println("</script>");
+	}
 %>
+
 <!-- mysql 아이디, 비밀번호  -->
 <sql:setDataSource var="dataSource"
 	url="jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?serverTimezone=UTC"

@@ -98,17 +98,13 @@
       int oncePage = 4;
    	  int vButton = 1;
       String msg = request.getParameter("msg");
-   
-      if (msg != null) {
-         if(msg.equals("1")){
-            out.println(" <h2 class='alert alert-danger'>회원가입을 완료했습니다.</h2>");
-         }else if (msg.equals("2")) {
-            //세션 받아오기
-            String loginId = (String) session.getAttribute("sessionId");
-            out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
-         }            
-      } else {
-         out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");
+      
+      String loginId = (String) session.getAttribute("sessionId");
+      if(loginId==null){
+    	  out.println(" <h2 class='alert alert-danger'>" + "로그인이 필요합니다.</h2>");
+      }
+      else{
+    	  out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");  
       }
    %>
    

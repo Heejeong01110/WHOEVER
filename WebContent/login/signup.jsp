@@ -3,7 +3,7 @@
 <head>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import = "javax.mail.*" %>
-
+<%@ page import = "java.io.PrintWriter" %>
 <!-- CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -80,11 +80,14 @@
 </style>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String email = request.getParameter("signup_email");
-	String id = request.getParameter("signup_id");
-	String pwd = request.getParameter("signup_password");
-	String pwd_re = request.getParameter("signup_password_re");
-	String name = request.getParameter("signup_name");
+
+	String loginId = (String) session.getAttribute("sessionId");
+	if(loginId!=null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href = 'mypage.jsp'");
+		script.println("</script>");
+	}
 %>
 <!-- 값 입력여부 확인 -->
 </head>

@@ -2,6 +2,8 @@
 <html>
 <head>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import = "javax.mail.*" %>
+
 <!-- CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -17,8 +19,7 @@
 	crossorigin="anonymous"></script>
 <!-- Bootstrap core CSS -->
 <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <title>WHOEVER SIGNUP</title>
 <style>
 .app {
@@ -84,7 +85,6 @@
 	String pwd = request.getParameter("signup_password");
 	String pwd_re = request.getParameter("signup_password_re");
 	String name = request.getParameter("signup_name");
-	
 %>
 <!-- 값 입력여부 확인 -->
 </head>
@@ -168,13 +168,22 @@
 			document.signup_info.signup_email.focus();
 			return false;
 		}//조건 만족 시 
-		else {  
+		else {
+			//1. send_email.jsp로 사용자 email 전송하기.
+			var url = "send_email.jsp?email=" + email;
+			window.open(url,"send_email","toolbar=no,location=no,status=no,menubar=no,scrollbar=no,resizable=no,width=300,height=180");
+			
+			//2. 그 안에서 java 함수 사용해서 메일 전송
+			//3. jsp에서 다시 여기로 값 받아오기
+			//인증 완료 시 파란색
+			/*
 			emailhint.style.color="blue";
 			$("#emailck").text("이메일 인증이 완료되었습니다.");
 			$("#signup_email").attr("readonly",true);
 			//document.getElementById("signup_email") = ture;
 			//emailinput.disabled=true; //성공하면 수정 못함
 			document.signup_info.signup_id.focus();
+			*/
 			return true;
 		}
 		//메일 보내는 동작 수행
@@ -254,6 +263,3 @@
 	</div>
 </body>
 </html>
-
-<!-- 세션 예외 처리 -->
-<!-- gmail에서 실제로 인증받아서 인증되게 추가 -->

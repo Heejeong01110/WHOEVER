@@ -9,8 +9,15 @@
 	String filedel = request.getParameter("filedel");
 	//세션 받아오기
 	String loginId = (String) session.getAttribute("sessionId");
-	//이 값이 null이면 초기화 버튼 클릭
 	
+	//이 값이 null이면 초기화 버튼 클릭
+	if(loginId==null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
+	}
+
 	//String fileUploadPath = "C:\\Github\\WHOEVER\\WebContent\\resources\\images"; //test용. 수정 필요
 	String fileUploadPath = this.getServletContext().getRealPath("/resources/images");
 	

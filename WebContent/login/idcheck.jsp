@@ -3,6 +3,7 @@
 <%@ page import="java.util.*, java.sql.*, java.io.*"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+	String loginId = (String) session.getAttribute("sessionId");
 	String id = request.getParameter("id");
 	int ckeck=-1;
 	//db 읽어오기

@@ -164,6 +164,7 @@ public class BbsDAO {
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
 				bbsvo.setBbs_type(rs.getString("bbs_type"));
+				bbsvo.setUser_id(rs.getString("user_id"));
 				if(bbsvo.getBbs_available() == 1)
 					bbslist.add(0, bbsvo);
 			}

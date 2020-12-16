@@ -45,7 +45,7 @@
 			script.println("location.href = './login/login.jsp'");
 			script.println("</script>");
 		} else{
-			if(bbs.getBbs_title() == null || bbs.getBbs_content() == null){
+			if(request.getParameter("bbs_title") == null || request.getParameter("bbs_content") == null || request.getParameter("bbs_type") == null || request.getParameter("tag_name") == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않은 내용이 있습니다.')");

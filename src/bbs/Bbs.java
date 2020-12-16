@@ -8,15 +8,15 @@ public class Bbs {
 	private String bbs_content;
 	private int bbs_available;
 	private String bbs_type;
-	private int category_type;
+	//private int category_type;
 	
 
-	public int getCategory_type() {
+	/*public int getCategory_type() {
 		return category_type;
 	}
 	public void setCategory_type(int category_type) {
 		this.category_type = category_type;
-	}
+	}*/
 	public int getBbs_id() {
 		return bbs_id;
 	}

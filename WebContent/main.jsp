@@ -195,7 +195,7 @@
             <div class="bbs-body-header">
                <h1><%=B.getBbs_title()%></h1>
                <p class="bbs-body-hashtag"></p>
-               <p class="bbs-body-nickname">작성자: <%= B.getUser_id() %></p>
+               <p class="bbs-body-nickname">작성자: <%=B.getUser_id()%></p>
             </div>
 
             <p class="bbs-body-description"><%=B.getBbs_content()%></p>

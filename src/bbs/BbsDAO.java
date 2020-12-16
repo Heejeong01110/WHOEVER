@@ -160,6 +160,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				//bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -195,6 +196,7 @@ public class BbsDAO {
 					Bbs bbsvo = new Bbs();
 					bbsvo.setBbs_id(rs.getInt("bbs_id"));
 					bbsvo.setBbs_title(rs.getString("bbs_title"));
+					//bbsvo.setUser_id(rs.getString("user_id"));
 					bbsvo.setBbs_date(rs.getString("bbs_date"));
 					bbsvo.setBbs_content(rs.getString("bbs_content"));
 					bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -232,6 +234,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				//bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -260,6 +263,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				//bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -293,6 +297,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				//bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));

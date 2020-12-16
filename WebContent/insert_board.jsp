@@ -43,7 +43,7 @@ try {
 	ResultSet rs;
 	String sql;
 
-	sql = " SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs WHERE bbs_id BETWEEN " + sNum +" AND "+eNum;
+	sql = " SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs WHERE bbs_id BETWEEN " + sNum +" AND "+eNum + " ORDER BY bbs_id DESC";
 	rs = state.executeQuery(sql);
 
 	while (rs.next()) {

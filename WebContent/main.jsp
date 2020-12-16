@@ -66,7 +66,7 @@
                        addListHtml += "<div class=\"bbs-body-header\">";
                        addListHtml += "<h1>"+webData[i].bbs_title+"</h1>"
                        addListHtml += "<p class=\"bbs-body-hashtag\"></p>"
-                       addListHtml += "<p class=\"bbs-body-nickname\">작성자:"+webData[i].user_id+"</p>"
+                       addListHtml += "<p class=\"bbs-body-nickname\">작성자:"+webData[i].bbs_userId+"</p>"
                        addListHtml += "</div>";
                        addListHtml += "<p class=\"bbs-body-description\">"+webData[i].bbs_content+"</p>";
                        //카트바디 본문
@@ -90,7 +90,6 @@
        
    }
 </script>
-
 
 <body>
    <jsp:include page="header.jsp" />

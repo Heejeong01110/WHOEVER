@@ -57,7 +57,7 @@ public class BbsDAO {
 	
 		return -1;
 	}
-	*/
+	
 	public int write(String bbs_title,String user_id, String bbs_content, String bbs_type) {
 		String SQL = "INSERT INTO BBS (bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type) VALUES (?, ?, ?, ?, ?, ?)";
 		try {

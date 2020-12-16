@@ -1,5 +1,6 @@
 <%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8"%>
 <%@ page import = "bbs.BbsDAO" %>
+<%@ page import = "bbs.Bbs" %>
 <%@ page import = "tag.TagDAO" %>
 <%@ page import = "category.CategoryDAO" %>
 <%@ page import = "java.io.PrintWriter" %>
@@ -51,8 +52,8 @@
 				script.println("history.back()");
 				script.println("</script>");
 			} else{
-				BbsDAO bbsDAO = new BbsDAO();
-				TagDAO tagDAO = new TagDAO();
+				//BbsDAO bbsDAO = new BbsDAO();
+				//TagDAO tagDAO = new TagDAO();
 				//CategoryDAO categoryDAO = new CategoryDAO();
 				request.setCharacterEncoding("utf-8");
 				String type = request.getParameter("bbs_type");

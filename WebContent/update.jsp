@@ -40,7 +40,15 @@
 			script.println("location.href = 'main.jsp'");
 			script.println("</script>");
 		}
-	
+		String A = " ";
+		String B = " ";
+		String type = bbs.getBbs_type();
+		System.out.println("타입: \n"+type);
+		if(type.equals("구인")){
+			A = "checked";
+		} else{
+			B = "checked";
+		}
 	%>
 	<jsp:include page="header.jsp" />
 	<div class="container">
@@ -58,8 +66,8 @@
 					<tbody>
 						<tr>
 							<td><input type="radio" placeholder="종류" name="bbs_type"
-								maxlength="20" value="구인" th:checked = "${bbs_type eq '구인' ? 'checked' : '' }">구인 <input type="radio"
-								placeholder="종류" name="bbs_type" maxlength="20" value="구직" th:checked = "${bbs_type eq '구직' ? 'checked' : '' }">구직
+								maxlength="20" value="구인" <%=A%>>구인 <input type="radio"
+								placeholder="종류" name="bbs_type" maxlength="20" value="구직" <%=B%>>구직
 							</td>
 						</tr>
 						<tr>

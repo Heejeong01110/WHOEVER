@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*"%>
+<%@ page import="bbs.Bbs"%>
 <%@ page import="java.util.*, java.sql.*, java.io.*"%>
 <%
 
@@ -38,12 +39,14 @@ String webData = "["; // json문자열
 
 try {
 	Class.forName(JDBC_DRIVER);
-	con = DriverManager.getConnection("jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?serverTimezone=UTC", "whoever", "Whoever12#");
+	con = DriverManager.getConnection("jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?useSSL=false", "whoever", "Whoever12#");
 	state = con.createStatement();
+	ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
 	ResultSet rs;
 	String sql;
 
-	sql = " SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs ORDER BY bbs_id DESC LIMIT 3 WHERE bbs_available";
+	//sql = " SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs WHERE bbs_id BETWEEN " + sNum +" AND "+eNum; //4 7  8 11
+	sql = "SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs where bbs_available = 1 ORDER BY bbs_id DESC LIMIT " +  sNum + ",4";
 	rs = state.executeQuery(sql);
 
 	while (rs.next()) {
@@ -55,6 +58,17 @@ try {
 		bbs_available = Integer.toString(rs.getInt("bbs_available"));
 		bbs_type = rs.getString("bbs_type");
 		
+		/* Bbs bbsvo = new Bbs();
+		bbsvo.setBbs_id(rs.getInt("bbs_id"));
+		bbsvo.setBbs_title(rs.getString("bbs_title"));
+		bbsvo.setBbs_date(rs.getString("bbs_date"));
+		bbsvo.setBbs_content(rs.getString("bbs_content"));
+		bbsvo.setBbs_available(rs.getInt("bbs_available"));
+		bbsvo.setBbs_type(rs.getString("bbs_type"));
+		bbsvo.setUser_id(rs.getString("user_id"));
+		if(bbsvo.getBbs_available() == 0)
+			continue; */
+		
 		webData += "{ \"bbs_id\" : \""+bbs_id+"\",";
 		webData += "\"bbs_title\" :\""+bbs_title+"\",";
 		webData += "\"bbs_userId\" :\""+bbs_userId+"\",";
@@ -63,6 +77,13 @@ try {
 		webData += "\"bbs_available\" :\""+bbs_available+"\",";
 		webData += "\"bbs_type\" :\""+bbs_type+"\"}";
 		
+		/* webData += "{ \"bbs_id\" : \""+bbsvo.getBbs_id()+"\",";
+		webData += "\"bbs_title\" :\""+bbsvo.getBbs_title()+"\",";
+		webData += "\"bbs_userId\" :\""+bbsvo.getUser_id()+"\",";
+		webData += "\"bbs_date\" :\""+bbsvo.getBbs_date()+"\",";
+		webData += "\"bbs_content\" :\""+bbsvo.getBbs_content()+"\",";
+		webData += "\"bbs_available\" :\""+bbsvo.getBbs_available()+"\",";
+		webData += "\"bbs_type\" :\""+bbsvo.getBbs_type()+"\"}";*/
 		if(!rs.isLast()) {
 	        webData += ",";
 	    }

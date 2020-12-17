@@ -53,6 +53,5 @@
 			}
 		}
 	}
-	
-	response.sendRedirect("mypage.jsp");
+	out.println("<script> alert(\"메시지가 수정되었습니다.\"); window.location= \"mypage.jsp\"; </script>");
 %>

@@ -10,7 +10,7 @@
 	String oldpw = request.getParameter("update_password_old");
 	String newpw = request.getParameter("update_password_new");
 	String pw_re = request.getParameter("update_password_re");
-	String email = request.getParameter("update_email");
+
 
 
 	//이 값이 null이면 초기화 버튼 클릭
@@ -44,19 +44,27 @@
 		
 		
 		if(!checkpw.equals(oldpw)){
-			//값 같이 넘겨주거나 틀렸다고 확인시켜주는것도 ㄱㅊ
 			response.sendRedirect("mypage.jsp");
 		}else{
 			//2. 일치할 경우에만 정보 수정
-
-			sql = " UPDATE user SET name=?, password=?, email=? WHERE id = '" + loginId+"'";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, newpw);
-			pstmt.setString(3, email);
-			int r = pstmt.executeUpdate();
-			pstmt.close();			
+			if("null".equals(name)){
+			//3. name 입력값 있을경우, 이름, 비밀번호 둘다 변경
+				sql = " UPDATE user SET name=?, password=?, WHERE id = '" + loginId+"'";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, name);
+				pstmt.setString(2, newpw);
+				int r = pstmt.executeUpdate();
+				pstmt.close();
+			}else{
+			//4. name 입력값 없을경우 비밀번호만 수정
+				sql = " UPDATE user SET password=?, WHERE id = '" + loginId+"'";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, newpw);
+				int r = pstmt.executeUpdate();
+				pstmt.close();	
+			}
 		}
 		
 		rs.close();

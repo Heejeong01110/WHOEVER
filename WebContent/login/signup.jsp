@@ -100,7 +100,7 @@
 		//var expid = /^[a-z0-9]{5,20}$/;
 		var exppwd = /^[A-Za-z0-9]{8,16}$/;
 		if ($("input:checkbox[name=agree_ok]").is(":checked") == false) {
-			alert("동의.");
+			alert("이용약관 동의가 필요합니다.");
 			document.signup_info.agree_ok.focus();
 			return false;
 		}
@@ -137,6 +137,7 @@
 			document.signup_info.signup_name.focus();
 			return false;
 		}
+		alert("회원가입이 완료되었습니다.");
 		document.signup_info.submit();
 	}//checkmember end
 
@@ -174,19 +175,7 @@
 		else {
 			//1. send_email.jsp로 사용자 email 전송하기.
 			var url = "send_email.jsp?email=" + email;
-			window.open(url,"send_email","toolbar=no,location=no,status=no,menubar=no,scrollbar=no,resizable=no,width=300,height=180");
-			
-			//2. 그 안에서 java 함수 사용해서 메일 전송
-			//3. jsp에서 다시 여기로 값 받아오기
-			//인증 완료 시 파란색
-			/*
-			emailhint.style.color="blue";
-			$("#emailck").text("이메일 인증이 완료되었습니다.");
-			$("#signup_email").attr("readonly",true);
-			//document.getElementById("signup_email") = ture;
-			//emailinput.disabled=true; //성공하면 수정 못함
-			document.signup_info.signup_id.focus();
-			*/
+			window.open(url,"send_email","toolbar=no,location=no,status=no,menubar=no,scrollbar=no,resizable=no,width=600,height=360");
 			return true;
 		}
 		//메일 보내는 동작 수행

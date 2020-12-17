@@ -17,8 +17,8 @@
 
 <style>
 .parent {
-	width: 70%;
-	margin: 10% auto;
+	width: 90%;
+	margin: 5% auto;
 }
 
 .mypage_image_container {
@@ -121,7 +121,6 @@
 		<div class="mypage_image_container">
 			<div class="image_view">
 <%
-			System.out.println(user_image);
 			if("defaultusrimg.jpg".equals(user_image)){
 				//기본이미지 출력
 %>
@@ -141,7 +140,7 @@
 					<input type="submit" value="업로드">
 				</form>
 				<!-- 사진 초기화-->
-				<button type="button" class="remove_img" onClick="location.href='mypage_image.jsp?filedel='no'" >사진 삭제</button>
+				<button type="button" class="remove_img" onClick="location.href='mypage_image.jsp?filedel=no'" >사진 삭제</button>
 			</div>
 			
 			

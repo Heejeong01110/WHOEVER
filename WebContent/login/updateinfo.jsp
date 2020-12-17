@@ -125,11 +125,9 @@
 function checkMember() {
 	var exppwd = /^[A-Za-z0-9]{8,16}$/;
 	
-	if ($.trim($("#update_name").val()) == '') {
-		alert("이름을 입력해주세요.");
-		document.update_info.update_name.focus();
-		return false;
-	}
+	//이름 입력을 안할경우 null값 전송
+	
+	//패스퉈드 입력여부 확인
 	if ($.trim($("#update_password_old").val()) == '') {
 		alert("패스워드를 입력해주세요.");
 		document.update_info.update_password_old.focus();
@@ -145,9 +143,12 @@ function checkMember() {
 		document.update_info.update_password_re.focus();
 		return false;
 	}
-	
 	document.update_info.submit();
 }//checkmember end
+
+function reMypage(){
+	location.href="mypage.jsp"
+}
 </script>
 
 
@@ -163,45 +164,23 @@ function checkMember() {
 				아이디 :
 				<%out.println(loginId); %>
 			</p>
-			
-			<!-- 
-			update만 하면 끗
-			1. 기본으로 모든 입력창은 default disable 설정
-			2. db에서 읽어온 사용자 정보가 이미 들어있음(패스워드 제외)
-			3. 각 input 위 이름 옆의 버튼을 클릭하면 disable 풀림
-			4. 값 모두 입력 후 다시 버튼을 누르면 값이 수정됨 & disable 설정
-			
-			5. 확인 버튼 누르면 submit 작동 -> 내부에서 따로 연산 안하고 그냥 mypage로 이동 
-			-->
-			 
 			 
 			<form action="updateinfo_process.jsp" method="post" name="update_info">
 			
-			
 				<p>이름</p>
-				<button type="button" class="member_button_update" onClick="checkMember()"><strong>수정</strong></button>
 				<input id="update_name" class="member_input_box" type="text"name="update_name" placeholder="이름" maxlength="50">
 				
 				
 				<p>기존 패스워드</p>
-				<button type="button" class="member_button_update" onClick="checkMember()"><strong>수정</strong></button>
 				<input id="update_password_old" class="member_input_box" type="text"name="update_password_old" placeholder="기존 패스워드" maxlength="50">
 				<p>새로운 패스워드</p>
 				<input id="update_password_new" class="member_input_box" type="text"name="update_password_new" placeholder="새로운 패스워드" maxlength="50">
 				<p>패스워드 확인</p>
 				<input id="update_password_re" class="member_input_box" type="text"name="update_password_re" placeholder="패스워드 확인" maxlength="50">
-
-
-				<p>이메일 주소</p>
-				<button type="button" class="member_button_update" onClick="checkMember()"><strong>수정</strong></button>
-				<input id="update_email" class="member_input_box" type="email"name="update_email" placeholder="이메일 주소" maxlength="50">
-				<br>
-				
 				
 				<button type="button" class="member_button_update" onClick="checkMember()"><strong>수정</strong></button>
-			
-			
 			</form>
+			<input type="button" class="member_button_update" value="닫기" onclick="reMypage()">
 			
 			
 			

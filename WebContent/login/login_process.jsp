@@ -32,6 +32,7 @@
 <%
 
 String user_id= null;
+String user_image= null;
 //db 읽어오기
 String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 Connection con = null;
@@ -44,11 +45,12 @@ try {
 	ResultSet rs;
 	String sql;
 
-	sql = " SELECT user_id FROM user WHERE id = '" + id+"'";
+	sql = " SELECT user_id, user_image FROM user WHERE id = '" + id+"'";
 	rs = state.executeQuery(sql);
 
 	while (rs.next()) {
 		user_id = rs.getString("user_id");
+		user_image = rs.getString("user_image");
 	}
 
 	rs.close();
@@ -74,6 +76,7 @@ try {
 
 session.setAttribute("sessionId", id); //아이디
 session.setAttribute("sessionUserId", user_id);//인덱스번호
+session.setAttribute("sessionuserImage", user_image);//인덱스번호
 
 %>
 	

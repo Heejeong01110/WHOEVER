@@ -39,13 +39,14 @@ String webData = "["; // json문자열
 try {
 	Class.forName(JDBC_DRIVER);
 	con = DriverManager.getConnection("jdbc:mysql://blazingcode.asuscomm.com:6000/whoever?serverTimezone=UTC", "whoever", "Whoever12#");
-	state = con.createStatement();
+	state = con.createStatement();   
+	ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
 	ResultSet rs;
 	String sql;
 	
 
 	//sql = " SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs WHERE bbs_id BETWEEN " + sNum +" AND "+eNum + " ORDER BY bbs_id DESC";
-	sql = " SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs ORDER BY bbs_id DESC LIMIT 3 ";
+	sql = "SELECT bbs_id, bbs_title, user_id, bbs_date, bbs_content, bbs_available, bbs_type FROM bbs where bbs_available = 1 ORDER BY bbs_id DESC LIMIT " +  sNum + ",4";
 	rs = state.executeQuery(sql);
 
 	while (rs.next()) {

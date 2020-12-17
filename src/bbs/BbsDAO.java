@@ -201,31 +201,7 @@ public class BbsDAO {
 		return bbslist;
 	}
 	
-	public ArrayList<Bbs> test() {
-		String SQL = "SELECT * FROM bbs where bbs_available = 1";
-		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Bbs bbsvo = new Bbs();
-				bbsvo.setBbs_id(rs.getInt("bbs_id"));
-				bbsvo.setBbs_title(rs.getString("bbs_title"));
-				bbsvo.setUser_id(rs.getString("user_id"));
-				bbsvo.setBbs_date(rs.getString("bbs_date"));
-				bbsvo.setBbs_content(rs.getString("bbs_content"));
-				bbsvo.setBbs_available(rs.getInt("bbs_available"));
-				bbsvo.setBbs_type(rs.getString("bbs_type"));
-			}
-		} catch(Exception e){
-			System.out.println("allElement Exception" + e.getMessage());
-			e.printStackTrace();
-		}
-		
-		return bbslist;
-	}
-	
+
 	
 	public ArrayList<Bbs> allMybbs(String user_id) {
 		String SQL = "SELECT * FROM bbs where u_id =?";
@@ -256,11 +232,16 @@ public class BbsDAO {
 	
 	
 	public ArrayList<Bbs> getAll(String sStr) {
-		String[] SQL = new String[4];
+		String[] SQL = new String[5];
 		SQL[0] = "SELECT * FROM bbs WHERE bbs_title LIKE '%"+ sStr +"%'";
 		SQL[1] = "SELECT * FROM bbs WHERE bbs_date LIKE '%"+ sStr +"%'";
 		SQL[2] = "SELECT * FROM bbs WHERE bbs_content LIKE '%"+ sStr +"%'";
 		SQL[3] = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ sStr +"%'";
+		SQL[4] = "SELECT b.bbs_id, b.bbs_title, b.user_id, b.bbs_content, b.bbs_available, b.bbs_type, b.bbs_date "
+            + "FROM bbs AS b "
+            + "JOIN tag AS t "
+            + "ON b.bbs_id = t._bbs_id "
+            + "WHERE t.tag_name LIKE '%"+sStr+"%'";
 		
 		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
 		try {
@@ -330,67 +311,112 @@ public class BbsDAO {
 		return bbslist;
 	}
 	
-	public ArrayList<Bbs> getDatabyContent(String content) {
-		String SQL = "SELECT * FROM bbs WHERE bbs_content LIKE '%"+ content +"%'";
-		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			//pstmt.setString(1, title);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Bbs bbsvo = new Bbs();
-				bbsvo.setBbs_id(rs.getInt("bbs_id"));
-				bbsvo.setBbs_title(rs.getString("bbs_title"));
-				bbsvo.setUser_id(rs.getString("user_id"));
-				bbsvo.setBbs_date(rs.getString("bbs_date"));
-				bbsvo.setBbs_content(rs.getString("bbs_content"));
-				bbsvo.setBbs_available(rs.getInt("bbs_available"));
-				bbsvo.setBbs_type(rs.getString("bbs_type"));
-				if(bbsvo.getBbs_available() == 1)
-					bbslist.add(0, bbsvo);
-			}
-			rs.close();
-		} catch(Exception e){
-			System.out.println("getDatabytitle Exception" + e.getMessage());
-			e.printStackTrace();
-		}
-		
-		return bbslist;
-	}
+	 public ArrayList<Bbs> getDatabyContent(String content) {
+      String SQL = "SELECT * FROM bbs WHERE bbs_content LIKE '%"+ content +"%'";
+      ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+      try {
+         pstmt = conn.prepareStatement(SQL);
+         //pstmt.setString(1, title);
+         rs = pstmt.executeQuery();
+         
+         while(rs.next()) {
+            Bbs bbsvo = new Bbs();
+            bbsvo.setBbs_id(rs.getInt("bbs_id"));
+            bbsvo.setBbs_title(rs.getString("bbs_title"));
+            bbsvo.setBbs_date(rs.getString("bbs_date"));
+            bbsvo.setBbs_content(rs.getString("bbs_content"));
+            bbsvo.setBbs_available(rs.getInt("bbs_available"));
+            bbsvo.setBbs_type(rs.getString("bbs_type"));
+            bbsvo.setUser_id(rs.getString("user_id"));
+            if(bbsvo.getBbs_available() == 1)
+               bbslist.add(0, bbsvo);
+         }
+         rs.close();
+      } catch(Exception e){
+         System.out.println("getDatabytitle Exception" + e.getMessage());
+         e.printStackTrace();
+      }
+      
+      return bbslist;
+   }
+   
+   public ArrayList<Bbs> getDatabyUser(String user) {
+      String SQL = "SELECT * FROM bbs WHERE user_id LIKE '%"+ user +"%'";
+      ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+      try {
+         pstmt = conn.prepareStatement(SQL);
+         //pstmt.setString(1, title);
+         rs = pstmt.executeQuery();
+         
+         while(rs.next()) {
+            Bbs bbsvo = new Bbs();
+            bbsvo.setBbs_id(rs.getInt("bbs_id"));
+            bbsvo.setBbs_title(rs.getString("bbs_title"));
+            bbsvo.setBbs_date(rs.getString("bbs_date"));
+            bbsvo.setBbs_content(rs.getString("bbs_content"));
+            bbsvo.setBbs_available(rs.getInt("bbs_available"));
+            bbsvo.setBbs_type(rs.getString("bbs_type"));
+            bbsvo.setUser_id(rs.getString("user_id"));
+            if(bbsvo.getBbs_available() == 1)
+               bbslist.add(0, bbsvo);
+         }
+         rs.close();
+      } catch(Exception e){
+         System.out.println("getDatabytitle Exception" + e.getMessage());
+         e.printStackTrace();
+      }
+      
+      return bbslist;
+   }
 	
-	public ArrayList<Bbs> getDatabyTag(String tag) {
-		//String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
-		String SQL = "SELECT b.bbs_id, b.bbs_title, b.user_id, b.bbs_content, b.bbs_available, b.bbs_type, b.bbs_date "
-				+ "FROM bbs AS b "
-				+ "JOIN tag AS t "
-				+ "ON b.bbs_id = t._bbs_id "
-				+ "WHERE t.tag_name LIKE '%"+tag+"%'";
-		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			//pstmt.setString(1, type);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Bbs bbsvo = new Bbs();
-				bbsvo.setBbs_id(rs.getInt("bbs_id"));
-				bbsvo.setBbs_title(rs.getString("bbs_title"));
-				//bbsvo.setUser_id(rs.getString("user_id"));
-				bbsvo.setBbs_date(rs.getString("bbs_date"));
-				bbsvo.setBbs_content(rs.getString("bbs_content"));
-				bbsvo.setBbs_available(rs.getInt("bbs_available"));
-				bbsvo.setBbs_type(rs.getString("bbs_type"));
-				if(bbsvo.getBbs_available() == 1)
-					bbslist.add(0, bbsvo);
-			}
-			rs.close();
-		} catch(Exception e){
-			System.out.println("getDatabytitle Exception" + e.getMessage());
-			e.printStackTrace();
-		}
-		return bbslist;
-	}
+	 public ArrayList<Bbs> getDatabyTag(String tag) {
+      //String SQL = "SELECT * FROM bbs WHERE bbs_type LIKE '%"+ type +"%'";
+      String tags[] = tag.split(" ");
+      String SQL[] = new String[tags.length];
+      
+      for(int i = 0;i<tags.length;i++) {
+         SQL[i] =  "SELECT b.bbs_id, b.bbs_title, b.user_id, b.bbs_content, b.bbs_available, b.bbs_type, b.bbs_date "
+               + "FROM bbs AS b "
+               + "JOIN tag AS t "
+               + "ON b.bbs_id = t._bbs_id "
+               + "WHERE t.tag_name LIKE '%"+tags[i]+"%'";         
+      }
+
+      ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+      
+      try {
+         for(String S: SQL) {
+            pstmt = conn.prepareStatement(S);
+            //pstmt.setString(1, type);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+               boolean addFlag = true;
+               
+               Bbs bbsvo = new Bbs();
+               bbsvo.setBbs_id(rs.getInt("bbs_id"));
+               bbsvo.setBbs_title(rs.getString("bbs_title"));
+               bbsvo.setBbs_date(rs.getString("bbs_date"));
+               bbsvo.setBbs_content(rs.getString("bbs_content"));
+               bbsvo.setBbs_available(rs.getInt("bbs_available"));
+               bbsvo.setBbs_type(rs.getString("bbs_type"));
+               bbsvo.setUser_id(rs.getString("user_id"));
+               for(Bbs bl : bbslist) {
+                  if(bl.getBbs_id() == bbsvo.getBbs_id()) {
+                     addFlag = false;
+                     break;
+                  }
+               }
+               if(addFlag && (bbsvo.getBbs_available() == 1))
+                  bbslist.add(0, bbsvo);
+            }
+         }
+         rs.close();
+      } catch(Exception e){
+         System.out.println("getDatabytitle Exception" + e.getMessage());
+         e.printStackTrace();
+      }
+      return bbslist;
+   }
 	
 	public int delete(int bbs_id){
 		String SQL = "UPDATE BBS SET bbs_available = 0 where bbs_id = ?";

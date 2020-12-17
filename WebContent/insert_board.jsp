@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*"%>
+<%@ page import = "bbs.Bbs" %>
 <%@ page import="java.util.*, java.sql.*, java.io.*"%>
 <%
 

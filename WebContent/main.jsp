@@ -117,12 +117,11 @@
        </p>
        <form name = "searchBox" action = "mainServlet?cmd=search" method="post">
           <select id="searchType" name="searchType">
-             <option value="all"<c:if test="${searchType == 'all'}">selected</c:if>>전체</option>
-             <option value="title"<c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
-             <option value="tag"<c:if test="${searchType == 'tag'}">selected</c:if>>태그</option>
-             <option value="content"<c:if test="${searchType == 'content'}">selected</c:if>>내용</option>
-             <option value="user"<c:if test="${searchType == 'user'}">selected</c:if>>작성자</option>
-             
+             <option value="all" <c:if test= "${param.searchType=='all'}">selected="selected"</c:if>>전체</option>
+             <option value="title" <c:if test = "${param.searchType=='title'}">selected="selected"</c:if>>제목</option>
+             <option value="tag" <c:if test = "${param.searchType=='tag'}">selected="selected"</c:if>>태그</option>
+             <option value="content" <c:if test = "${param.searchType =='content'}">selected="selected"</c:if>>내용</option>
+             <option value="user" <c:if test = "${param.searchType=='user'}">selected="selected"</c:if>>작성자</option>
           </select>
           <input class="search__input" type="text" placeholder="Search" name = "searchData">
           <p> <!-- <input type="submit" value = "전송"> -->

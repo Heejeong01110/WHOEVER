@@ -33,8 +33,6 @@
        $('#more').val(nextNum);
        
        //alert("startNum "+ String(startNum)+" 출력해주라"); //콘솔로그로 startNum에 값이 들어오는지 확인
-    
-       
         $.ajax({
            url : "./insert_board.jsp", //실행할 자바파일 부르기(또는 jsp)
            type : "post",

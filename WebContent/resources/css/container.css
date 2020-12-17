@@ -23,3 +23,17 @@
   -webkit-filter: blur(3px);
   opacity: 0.7;
 }
+
+.empty {
+  content: "";
+  display: block;
+  top:0;
+  left:0;
+  position: fixed;
+  background-repeat:no-repeat;
+  background-position:bottom;
+  background-size: cover;
+   filter: blur(3px);
+  -webkit-filter: blur(3px);
+  opacity: 0.7;
+}

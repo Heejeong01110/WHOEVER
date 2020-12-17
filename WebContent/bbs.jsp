@@ -5,6 +5,7 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
 <link rel="stylesheet" href="./resources/css/card.css" />
+<link rel="stylesheet" href="./resources/css/container.css " />
 <link rel="stylesheet" href="./resources/css/search.css?after">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -74,6 +75,11 @@
       
    <%
       } 
+      if(list.size() == 0){
+%>
+	 <img src = "./resources/images/empty.jpeg" id = "empty" style="max-width: 100%; height: auto;"/>
+<% 
+      }
    %>
 
    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

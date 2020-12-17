@@ -148,12 +148,17 @@ public class TagDAO {
 					tag2 = tag2 + tag;
 				}*/
 				tag = rs.getString("tag_name");
-				tag2 = tag2+ " " + tag;
+				if(cnt == 0) {
+					tag2 = tag;
+				}else {
+					tag2 = tag2+ " " + tag;
+				}
+				
 				//tag.setTag_id(rs.getInt(1));
 				//category.setCategory_name(rs.getString(2));
 				//tag = rs.getString("tag_name");
 				//tag2 = tag2 + tag;
-				
+				cnt++;
 				//tag.set_bbs_id(rs.getInt(3));
 				} 
 			System.out.println("태그 : "+ tag2+ " " + cnt);
@@ -185,6 +190,30 @@ public class TagDAO {
 		}
 	
 		return null;
+	}
+	
+	public int update(String[] tagArray, int bbs_id) {
+		String SQL = "INSERT INTO tag VALUES (?, ?, ?)";
+		
+		try {
+			
+			
+			for(int i = 0; i<tagArray.length; i++) {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			
+			//pstmt.setInt(1, i+1);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, tagArray[i]);
+			pstmt.setInt(3, bbs_id);
+			pstmt.executeUpdate();
+			//pstmt.setInt(8, getNext());
+			//pstmt.executeUpdate();
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	
+		return -1;
 	}
 	
 	public int delete(int bbs_id){

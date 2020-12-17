@@ -19,8 +19,15 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="http://localhost:8080/WHOEVER/main.jsp">메인</a></li>
-				<li><a href="http://localhost:8080/WHOEVER/bbs.jsp">게시판</a></li>
+			<%
+			if (loginId != null) {//로그인 되어있을 경우
+							out.println("<li><a href=\"http://localhost:8080/WHOEVER/main.jsp\">메인</a></li>");
+							out.println("<li><a href=\"http://localhost:8080/WHOEVER/bbs.jsp\">나의 글</a></li>");
+						} else {//로그인이 안되있을 경우
+							out.println("<li><a href=\"http://localhost:8080/WHOEVER/main.jsp\">메인</a></li>");
+							}%>
+				<!-- <li><a href="http://localhost:8080/WHOEVER/main.jsp">메인</a></li>
+				<li><a href="http://localhost:8080/WHOEVER/bbs.jsp">내가 쓴 글</a></li> -->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -33,6 +40,7 @@
 							out.println("<li><a href=\"http://localhost:8080/WHOEVER/login/logout.jsp\">로그아웃</a></li>");
 							out.println("<li><a href=\"http://localhost:8080/WHOEVER/login/mypage.jsp\">프로필</a></li>");
 							out.println("<li><a href=\"http://localhost:8080/WHOEVER/bbswrite.jsp\">게시판 글쓰기</a></li>");
+							out.println("<li><a href=\"http://localhost:8080/WHOEVER/bbs.jsp\">내가 쓴 글 보기</a></li>");
 						} else {//로그인이 안되있을 경우
 							out.println("<li><a href=\"http://localhost:8080/WHOEVER/login/login.jsp\">로그인</a></li>");
 							out.println("<li><a href=\"http://localhost:8080/WHOEVER/login/signup.jsp\">회원가입</a></li>");

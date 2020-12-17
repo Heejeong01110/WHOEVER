@@ -69,7 +69,7 @@
 				
 				int result = bbsDAO.update(bbs_id, request.getParameter("bbs_title"), request.getParameter("bbs_content"),type);
 				int delete = tagDAO.delete(bbs_id);
-				int insert= tagDAO.Hashtag(tagArray);
+				int insert= tagDAO.update(tagArray, bbs_id);
 			
 				out.println("타입: \n"+ bbs.getBbs_type());
 				if(result == -1){

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<% 
-		
+		 request.setCharacterEncoding("utf-8"); 
 		String user_id = null;
 		if(session.getAttribute("sessionId") != null){
 			user_id = (String)session.getAttribute("sessionId");
@@ -23,6 +23,7 @@
 		if(request.getParameter("bbs_id") != null){
 			bbs_id = Integer.parseInt(request.getParameter("bbs_id"));
 		}
+		
 		if(bbs_id == 0){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -31,7 +32,10 @@
 			script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbs_id);
-		
+		int flag = 0;
+		if(request.getParameter("flag") != null){
+			flag = Integer.parseInt(request.getParameter("flag"));
+		}
 		
 		//세션 확인
 		int loginBbsIdequal=-1;//-1인 경우 로그인 안한경우, 0인경우 일치X, 1인경우 일치O
@@ -87,8 +91,13 @@
 					</tbody>
 
 				</table>
-				<a href = "main.jsp" class = "btn btn-primary">목록</a>
+				<a href = "main.jsp" class = "btn btn-primary">전체 목록</a>  
 				<%
+					
+					if(loginBbsIdequal==1 && flag == 1){ //일치
+						out.println("<a href = \"bbs.jsp\" class = \"btn btn-primary\">내가 쓴 글 목록</a>");
+					}
+					
 					if(loginBbsIdequal==1){ //일치
 						out.println("<a href = \"update.jsp?bbs_id="+bbs_id+"\" class = \"btn btn-primary\">수정</a>");
 						out.println("<a onclick = \"return confirm('정말로 삭제하시겠습니까?')\" href = \"deleteAction.jsp?bbs_id="+bbs_id+"\" class = \"btn btn-primary\">삭제</a>");
@@ -97,12 +106,13 @@
 					}
 				%>
 				
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+				<!-- <input type="submit" class="btn btn-primary pull-right" value="글쓰기"> -->
 		
 
 
 		</div>
 	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

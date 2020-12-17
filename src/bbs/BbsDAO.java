@@ -201,6 +201,32 @@ public class BbsDAO {
 		return bbslist;
 	}
 	
+	public ArrayList<Bbs> test() {
+		String SQL = "SELECT * FROM bbs where bbs_available = 1";
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Bbs bbsvo = new Bbs();
+				bbsvo.setBbs_id(rs.getInt("bbs_id"));
+				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				bbsvo.setUser_id(rs.getString("user_id"));
+				bbsvo.setBbs_date(rs.getString("bbs_date"));
+				bbsvo.setBbs_content(rs.getString("bbs_content"));
+				bbsvo.setBbs_available(rs.getInt("bbs_available"));
+				bbsvo.setBbs_type(rs.getString("bbs_type"));
+			}
+		} catch(Exception e){
+			System.out.println("allElement Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
+	
 	public ArrayList<Bbs> allMybbs(String user_id) {
 		String SQL = "SELECT * FROM bbs where u_id =?";
 		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();

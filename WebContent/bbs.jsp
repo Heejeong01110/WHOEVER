@@ -24,7 +24,7 @@
 
 </head>
 <body>
-   <jsp:include page="header.jsp" />
+
 	<% 
 	 request.setCharacterEncoding("utf-8"); 
 	String loginId = null;

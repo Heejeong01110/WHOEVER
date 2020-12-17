@@ -7,10 +7,59 @@
 <%@ page import = "tag.Tag" %>
 <html>
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
 <meta name = "viewport" content= "width=device-width", initial-scale="1">
 <script src="./resources/js/hashtag.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="./resources/css/container.css " />
+<script src = "https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <title>게시판</title>
+
+<script>    
+        //$(document.ready(function(){ .. });
+
+        $(function(){
+            //$("#dialog").dialog();
+            $("#dialog").dialog({
+                autoOpen:true, //자동으로 열리게
+                position:{my:"center"}, //x,y  값을 지정
+                width: 'auto',
+                height: 'auto',
+                //"center", "left", "right", "top", "bottom"
+                modal:true, //모달대화상자
+                resizable:true, //크기 조절 
+                show: {                // 애니메이션 효과 - 보여줄때
+                    effect: "explode",
+                    duration: 1000
+                },
+                close : function(){
+       				alert("메인으로 이동합니다.");
+					location.href = "main.jsp";
+                
+                    // functionality goes here
+                }  
+               /*  buttons:{
+                    "확인":function(){
+                        $(this).dialog("close");
+                    },"취소":function(){
+                        $(this).dialog("close");
+                    }
+                } */
+            });
+
+            //창 열기 버튼을 클릭했을경우
+           /*  $("#btn").on("click",function(){
+                $("#dialog").dialog("open"); //다이얼로그창 오픈                
+            }); */
+        });
+      
+        
+       
+    </script>
+    
 </head>
 <body>
 	<% 
@@ -50,8 +99,9 @@
 		//Tag tag = new TagDAO().getTag(bbs_id);
 		TagDAO tagDAO = new TagDAO();
 	%>	
-	<jsp:include page="header.jsp" />
-	<div class="container">
+<%-- 	<jsp:include page="header.jsp" /> --%>
+	
+	<div id="dialog" class="container">
 		<div class="row">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
@@ -112,8 +162,7 @@
 
 		</div>
 	</div>
-	
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+	<div class="back"></div> 
+
 </body>
 </html>

@@ -2,7 +2,6 @@
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "bbs.Bbs" %>
 <%@ page import = "tag.TagDAO" %>
-<%@ page import = "category.CategoryDAO" %>
 <%@ page import = "java.io.PrintWriter" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id = "tag" class = "tag.Tag" scope="page"/>

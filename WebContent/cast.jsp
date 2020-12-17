@@ -1,19 +1,57 @@
-<%@ page language="java" contentType="text/html; charset = utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8"%>
 <%@ page import = "java.io.PrintWriter" %>
 <%@ page import = "bbs.BbsDAO" %>
 <%@ page import = "bbs.Bbs" %>
 <%@ page import = "tag.TagDAO" %>
 <%@ page import = "tag.Tag" %>
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
-<meta name = "viewport" content= "width=device-width", initial-scale="1">
-<script src="./resources/js/hashtag.js"></script>
-<title>게시판</title>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="./resources/css/bootstrap.min.css " />
+	<meta name = "viewport" content= "width=device-width", initial-scale="1">
+        
+    <script>    
+        //$(document.ready(function(){ .. });
+
+        $(function(){
+            //$("#dialog").dialog();
+            $("#dialog").dialog({
+                autoOpen:true, //자동으로 열리게
+                position:{my:"center"}, //x,y  값을 지정
+                width: 'auto',
+                height: 'auto',
+                //"center", "left", "right", "top", "bottom"
+                modal:true, //모달대화상자
+                resizable:true, //크기 조절 
+                show:"slide" ,
+                close : function(){
+                	alert("close");
+                    // functionality goes here
+                }  
+               /*  buttons:{
+                    "확인":function(){
+                        $(this).dialog("close");
+                    },"취소":function(){
+                        $(this).dialog("close");
+                    }
+                } */
+            });
+
+            //창 열기 버튼을 클릭했을경우
+           /*  $("#btn").on("click",function(){
+                $("#dialog").dialog("open"); //다이얼로그창 오픈                
+            }); */
+        });
+    </script>
+
 </head>
 <body>
-	<% 
+<% 
 		 request.setCharacterEncoding("utf-8"); 
 		String user_id = null;
 		if(session.getAttribute("sessionId") != null){
@@ -50,8 +88,11 @@
 		//Tag tag = new TagDAO().getTag(bbs_id);
 		TagDAO tagDAO = new TagDAO();
 	%>	
-	<jsp:include page="header.jsp" />
-	<div class="container">
+
+<!-- <input type="button" id="btn" value="창 열기"/> -->
+
+
+<div id="dialog" class="container">
 		<div class="row">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
@@ -91,8 +132,8 @@
 					</tbody>
 
 				</table>
-				<a href = "main.jsp" class = "btn btn-primary">전체 목록</a>  
-				<%
+				<a href = "main2.jsp" class = "btn btn-primary">전체 목록</a>  
+				  <%
 					
 					if(loginBbsIdequal==1 && flag == 1){ //일치
 						out.println("<a href = \"bbs.jsp\" class = \"btn btn-primary\">내가 쓴 글 목록</a>");
@@ -104,16 +145,14 @@
 					}else if(loginBbsIdequal==0){//일치 안함
 						
 					}
-				%>
-				
-				<!-- <input type="submit" class="btn btn-primary pull-right" value="글쓰기"> -->
+				%>  
 		
 
 
 		</div>
 	</div>
-	
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+<div class="container">
+<h1>Modal 예시입니다</h1>
+</div> 
 </body>
 </html>

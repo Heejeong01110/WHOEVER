@@ -80,12 +80,37 @@ public class BbsDAO {
 	
 	
 	
-	public ArrayList<Bbs> getList(){
-		String SQL = "SELECT * FROM BBS WHERE bbs_available = 1 ORDER BY bbs_id DESC";
+//	public ArrayList<Bbs> getList(){
+//		String SQL = "SELECT * FROM BBS WHERE bbs_available = 1 ORDER BY bbs_id DESC";
+//		ArrayList<Bbs> list = new ArrayList<Bbs>();
+//		try {
+//			PreparedStatement pstmt = conn.prepareStatement(SQL);
+//			//pstmt.setInt(1, getNext() - );
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				Bbs bbs = new Bbs();
+//				bbs.setBbs_id(rs.getInt(1));
+//				bbs.setBbs_title(rs.getString(2));
+//				bbs.setUser_id(rs.getString(3));
+//				bbs.setBbs_date(rs.getString(4));
+//				bbs.setBbs_content(rs.getString(5));
+//				bbs.setBbs_available(rs.getInt(6));
+//				bbs.setBbs_type(rs.getString(7));
+//				//bbs.setCategory_type(rs.getInt(8));
+//				list.add(bbs);
+//			//pstmt.setString(7, bbsType.toString());
+//			}
+//		} catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return list;
+//	}
+	public ArrayList<Bbs> getList(String user_id){
+		String SQL = "SELECT * FROM BBS WHERE bbs_available = 1 AND user_id = ? ORDER BY bbs_id DESC";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			//pstmt.setInt(1, getNext() - );
+			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Bbs bbs = new Bbs();
@@ -160,7 +185,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
-				//bbsvo.setUser_id(rs.getString("user_id"));
+				bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -175,6 +200,34 @@ public class BbsDAO {
 		
 		return bbslist;
 	}
+	
+	public ArrayList<Bbs> allMybbs(String user_id) {
+		String SQL = "SELECT * FROM bbs where u_id =?";
+		ArrayList<Bbs> bbslist = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Bbs bbsvo = new Bbs();
+				bbsvo.setBbs_id(rs.getInt("bbs_id"));
+				bbsvo.setBbs_title(rs.getString("bbs_title"));
+				bbsvo.setUser_id(rs.getString("user_id"));
+				bbsvo.setBbs_date(rs.getString("bbs_date"));
+				bbsvo.setBbs_content(rs.getString("bbs_content"));
+				bbsvo.setBbs_available(rs.getInt("bbs_available"));
+				bbsvo.setBbs_type(rs.getString("bbs_type"));
+				if(bbsvo.getBbs_available() == 1)
+					bbslist.add(0, bbsvo);
+			}
+		} catch(Exception e){
+			System.out.println("allElement Exception" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return bbslist;
+	}
+	
 	
 	public ArrayList<Bbs> getAll(String sStr) {
 		String[] SQL = new String[4];
@@ -196,7 +249,7 @@ public class BbsDAO {
 					Bbs bbsvo = new Bbs();
 					bbsvo.setBbs_id(rs.getInt("bbs_id"));
 					bbsvo.setBbs_title(rs.getString("bbs_title"));
-					//bbsvo.setUser_id(rs.getString("user_id"));
+					bbsvo.setUser_id(rs.getString("user_id"));
 					bbsvo.setBbs_date(rs.getString("bbs_date"));
 					bbsvo.setBbs_content(rs.getString("bbs_content"));
 					bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -234,7 +287,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
-				//bbsvo.setUser_id(rs.getString("user_id"));
+				bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));
@@ -263,7 +316,7 @@ public class BbsDAO {
 				Bbs bbsvo = new Bbs();
 				bbsvo.setBbs_id(rs.getInt("bbs_id"));
 				bbsvo.setBbs_title(rs.getString("bbs_title"));
-				//bbsvo.setUser_id(rs.getString("user_id"));
+				bbsvo.setUser_id(rs.getString("user_id"));
 				bbsvo.setBbs_date(rs.getString("bbs_date"));
 				bbsvo.setBbs_content(rs.getString("bbs_content"));
 				bbsvo.setBbs_available(rs.getInt("bbs_available"));

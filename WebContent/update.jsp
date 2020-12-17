@@ -71,7 +71,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><input type = "text" class = "form-control" placeholder = "키워드" name = "tag_name" maxlength = "30" value = "<%=tagDAO.getTag(bbs_id).substring(1)%>">
+							<td><input type = "text" class = "form-control" placeholder = "키워드" name = "tag_name" maxlength = "30" value = "<%=tagDAO.getTag(bbs_id)%>">
 							</td>
 						</tr>
 						<tr>

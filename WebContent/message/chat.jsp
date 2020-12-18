@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<%@ page import ="java.sql.*" %>
+<%@ page import = "message.ChattingDAO" %>
+<%@ page import = "message.Chatting" %>
+<%@ page import = "java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +31,16 @@ input#chat {
 </style>
 </head>
 <body>
+	<%
+	  HttpSession sessionsa = request.getSession(false);
+	  String loginId = (String) sessionsa.getAttribute("sessionId");
+	  String room_id = (String) sessionsa.getAttribute("room_id");
+	  if(loginId==null){
+	      out.println("<script> alert(\"로그인이 필요합니다.\"); window.location= \"/WHOEVER/login/login.jsp\"; </script>");}
+	  
+	  ChattingDAO chattingDAO = new ChattingDAO();
+	  ArrayList<String>log = chattingDAO.getPrivious(room_id,loginId);
+	  %>
 <div>
  <p><input type="text" placeholder="type and press enter to chat" id="chat" /></p>
  <div id="console-container">
@@ -50,7 +63,6 @@ Chat.connect = (function(host) {
  }
  
  Chat.socket.onopen = function() {
-  Console.log("정보 : WebSocket 오픈!");
   document.getElementById("chat").onkeydown = function(event) {
    if( event.keyCode == 13 ) {
     Chat.sendMessage();
@@ -72,6 +84,12 @@ Chat.connect = (function(host) {
 Chat.initialize = function() {
  if( window.location.protocol == "http:") {
   Chat.connect("ws://localhost:8080/WHOEVER/websocket/chat");
+  <%
+  		for(int i =0; i<log.size();i++){
+  			out.println("Console.log(\""+log.get(i)+"\");");
+  		}
+	  
+	  %>
  } else {
   Chat.connect("wss://http://localhost:8080/WHOEVER/websocket/chat");
  }
@@ -80,7 +98,7 @@ Chat.sendMessage = (function() {
  var message = document.getElementById("chat").value;
  if( message != "") {
   Chat.socket.send(message);
-        document.getElementById("chat").value = '';
+  document.getElementById("chat").value = '';
  }
 });
 var Console = {};

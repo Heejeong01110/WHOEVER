@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" session = "false"%>
 <%@ page import ="java.sql.*" %>
 <%@ page import = "message.ChattingDAO" %>
 <%@ page import = "message.Chatting" %>
@@ -14,7 +14,8 @@
 <body>
 	<jsp:include page="/header.jsp" />
 	<%
-	  String loginId = (String) session.getAttribute("sessionId");
+	   HttpSession sessionsa = request.getSession(false);
+	  String loginId = (String) sessionsa.getAttribute("sessionId");
 	   
 	  if(loginId==null){
 	      out.println("<script> alert(\"로그인이 필요합니다.\"); window.location= \"/WHOEVER/login/login.jsp\"; </script>");}
@@ -23,7 +24,7 @@
 	  ArrayList<Chatting> list = chattingDAO.getMyRoomList(loginId);
 	  out.println("<div id=\"wrapper\">");
 	  for(Chatting i : list){
-		 out.println("<a href=\"http://"+"localhost:8080/WHOEVER/message/transform.jsp?type=1&num="+i.getRoom_id()+"\">"); 
+		  out.println("<a href=\""+response.encodeURL("chattingRoom.jsp?type=1&num="+ i.getRoom_id())+"\"/>");
 		 out.println("<div class=\"list\">");
 		 
 		 out.println("<div class=\"img-wrapper\">");

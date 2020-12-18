@@ -72,8 +72,8 @@ if(loginId!=null){
 <%
 	}
 	else if(check ==-1&&identifynum==null){ //사용가능 이메일
-		sEmail se = new sEmail();
-		se.sendEmail(email);
+		sEmail se =new sEmail();
+	    se.sendEmail(email);
 %>
 	<center>
 	<b>입력하신 <font color="red"> "<%=email%>"</font>은 <br/>
@@ -90,7 +90,7 @@ if(loginId!=null){
 	
 	</center>
 	<%
-	}else if("5555".equals(identifynum)){ //인증 성공
+	}else if("3349".equals(identifynum)){ //인증 성공
 %>
 			<center>
 			<b>인증이 완료되었습니다.</b>

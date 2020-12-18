@@ -6,7 +6,8 @@
       String loginId = (String) session.getAttribute("sessionId");
 		String user_image = (String) session.getAttribute("sessionuserImage");
 %>   
-
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="resources/js/bootstrap.js"></script>
 <nav class="navbar navbar-default">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle collapsed"
@@ -53,6 +54,7 @@
                   if (loginId != null) {//로그인 되어있을 경우
                      out.println("<li><a href=\"http://localhost:8080/WHOEVER/login/logout.jsp\">로그아웃</a></li>");
                      out.println("<li><a href=\"http://localhost:8080/WHOEVER/login/mypage.jsp\">프로필</a></li>");
+                     out.println("<li><a href=\"http://localhost:8080/WHOEVER/message/myChattingRoom.jsp\">내채팅방</a></li>");
                      out.println("<li><a href=\"http://localhost:8080/WHOEVER/bbswrite.jsp\">게시판 글쓰기</a></li>");
                      out.println("<li><a href=\"http://localhost:8080/WHOEVER/bbs.jsp\">내가 쓴 글 보기</a></li>");
                   } else {//로그인이 안되있을 경우

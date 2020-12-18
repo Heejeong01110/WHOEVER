@@ -34,8 +34,8 @@ public class sEmail  {
 	}
 	
 	public void sendEmail(String email) {
-		final String user = "123rkdrkd"; //발신할 gmail example@gmail.com
-		final String password = "kyw@23379"; //발신할 비밀번호
+		final String user = "zeros0117@gmail.com"; //발신할 gmail example@gmail.com
+		final String password = "lp950528!!"; //발신할 비밀번호
 		
 		// Get the session object
 		Properties props = new Properties();
@@ -71,7 +71,7 @@ public class sEmail  {
 	            // 제목 설정
 	            msg.setSubject("WHOEVER 인증코드 발송", "UTF-8");
 	             
-	            msg.setText("인증코드 : 5555", "UTF-8");  //일단 인증코드는 5555로 하드코딩
+	            msg.setText("인증코드 : 3349", "UTF-8");  //일단 인증코드는 5555로 하드코딩
 	             
 	            // 메일 송신
 	            Transport.send(msg);   

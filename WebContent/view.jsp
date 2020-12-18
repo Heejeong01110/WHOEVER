@@ -32,7 +32,7 @@
                 modal:true, //모달대화상자
                 resizable:true, //크기 조절 
                 show: {                // 애니메이션 효과 - 보여줄때
-                    effect: "explode",
+                    effect: "slide",
                     duration: 1000
                 },
                 close : function(){

@@ -6,7 +6,8 @@
       String loginId = (String) session.getAttribute("sessionId");
 		String user_image = (String) session.getAttribute("sessionuserImage");
 %>   
-
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="resources/js/bootstrap.js"></script>
 <nav class="navbar navbar-default">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle collapsed"

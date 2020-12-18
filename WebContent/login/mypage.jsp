@@ -23,6 +23,7 @@
 
 .mypage_image_container {
 	float: left;
+	text-align: center;
 	margin: 0 10% 0 0;
 	width: 30%;
 	min-height: 682px;
@@ -33,6 +34,7 @@
 
 .mypage_msg_container {
 	float: left;
+	text-align: center;
 	margin: 0 auto;
 	width: 60%;
 	min-height: 682px;

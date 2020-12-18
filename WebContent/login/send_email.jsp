@@ -72,6 +72,8 @@ if(loginId!=null){
 <%
 	}
 	else if(check ==-1&&identifynum==null){ //사용가능 이메일
+		sEmail se = new sEmail();
+		se.sendEmail(email);
 %>
 	<center>
 	<b>입력하신 <font color="red"> "<%=email%>"</font>은 <br/>

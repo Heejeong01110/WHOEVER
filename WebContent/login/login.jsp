@@ -123,7 +123,7 @@
   				<div class="login_layout__inner" >
   					<!-- 페이지 로고 -->
   					<h1 style="padding-top: 48px; text-align: center; margin-bottom:42px;">
-  						<img src="logo" alt="logo" style="height: 24; weight=auto">
+  						<img src="WHOEVER" alt="WHOEVER" style="height: 24; weight=auto">
   					</h1>
   					<!-- 페이지 로고 -->
   					<h4 style="text-align: center; margin-bottom:42px;">로그인</h4>

@@ -34,8 +34,8 @@ public class sEmail  {
 	}
 	
 	public void sendEmail(String email) {
-		final String user = "."; //발신할 gmail example@gmail.com
-		final String password = "."; //발신할 비밀번호
+		final String user = "123rkdrkd"; //발신할 gmail example@gmail.com
+		final String password = "kyw@23379"; //발신할 비밀번호
 		
 		// Get the session object
 		Properties props = new Properties();

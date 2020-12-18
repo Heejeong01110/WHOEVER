@@ -174,6 +174,7 @@
 		}//조건 만족 시 
 		else {
 			//1. send_email.jsp로 사용자 email 전송하기.
+			
 			var url = "send_email.jsp?email=" + email;
 			window.open(url,"send_email","toolbar=no,location=no,status=no,menubar=no,scrollbar=no,resizable=no,width=600,height=360");
 			return true;
@@ -224,7 +225,7 @@
 			<form action="signup_process.jsp" method="post" name="signup_info">
 			<!-- 동의 박스 -->
 				<input type='checkbox' id='agree_ok' name='agree_ok' value='0'>
-				<label for="agree_ok"><b><font size="3" color="gray">ㅇㅇ동의</font></b></label>
+				<label for="agree_ok"><b><font size="3" color="gray">약관에 동의합니다.</font></b></label>
 
 			<!-- 이메일 입력 -->
 				<input id="signup_email" class="member_input_box" type="email"name="signup_email" placeholder="email@kpu.ac.kr" maxlength="50">

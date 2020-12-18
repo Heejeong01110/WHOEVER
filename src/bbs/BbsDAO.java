@@ -447,4 +447,19 @@ public class BbsDAO {
          }
       }
    }
+   public int getRow() {
+	      String SQL = "SELECT COUNT(*) FROM bbs;";
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(SQL);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            return rs.getInt("COUNT(*)");
+	         }
+	   
+	      } catch(Exception e){
+	         e.printStackTrace();
+	      }
+	   
+	      return 0;
+	   }
 }

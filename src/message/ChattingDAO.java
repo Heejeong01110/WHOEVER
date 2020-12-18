@@ -171,7 +171,14 @@ public class ChattingDAO {
 		return list;
 	}
 	public void createChatting(String user_id,String board_num) {
-		
+		// String SQL = "INSERT INTO `chatting_room` (`title`, `limit`, `board_id`) VALUES ('"+ +"', '10', '"+board_num+"');";
+	      try {
+	        // PreparedStatement pstmt = conn.prepareStatement(SQL);
+	         //pstmt.executeUpdate();
+	      } catch(Exception e){
+	         e.printStackTrace();
+	      }
+	      return;
 	}
 	public void deleteChatting(String room_id) {
 		

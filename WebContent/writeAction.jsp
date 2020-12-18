@@ -3,6 +3,7 @@
 <%@ page import = "bbs.Bbs" %>
 <%@ page import = "tag.TagDAO" %>
 <%@ page import = "java.io.PrintWriter" %>
+<%@ page import = "message.ChattingDAO" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id = "tag" class = "tag.Tag" scope="page"/>
 <jsp:setProperty name = "tag" property = "tag_name"/>
@@ -22,6 +23,7 @@
       Bbs bbs = new Bbs();
       BbsDAO bbsDAO = new BbsDAO();
       TagDAO tagDAO = new TagDAO();
+      ChattingDAO chatDAO = new ChattingDAO(); 
       //String user_id = null;
        String loginUserId = null;
        String loginId = null;
@@ -74,6 +76,7 @@
                script.println("</script>");
             }
             else{
+               chatDAO.createChatting(loginId, Integer.toString((bbsDAO.getRow()+1)));
                PrintWriter script = response.getWriter();
                script.println("<script>");
                script.println("location.href = 'bbs.jsp'");

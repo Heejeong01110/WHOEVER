@@ -49,19 +49,21 @@
 			//2. 일치할 경우에만 정보 수정
 			if("null".equals(name)){
 			//3. name 입력값 있을경우, 이름, 비밀번호 둘다 변경
-				sql = " UPDATE user SET name=?, password=?, WHERE id = '" + loginId+"'";
-				
+				//sql = " UPDATE user SET name=?, password=? WHERE id = '" + loginId+"'";
+				sql = " UPDATE user SET password=? WHERE id = '" + loginId+"'";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, name);
-				pstmt.setString(2, newpw);
+				pstmt.setString(1, newpw);
 				int r = pstmt.executeUpdate();
 				pstmt.close();
 			}else{
 			//4. name 입력값 없을경우 비밀번호만 수정
-				sql = " UPDATE user SET password=?, WHERE id = '" + loginId+"'";
+				//sql = " UPDATE user SET password=? WHERE id = '" + loginId+"'";
+				sql = " UPDATE user SET name=?, password=? WHERE id = '" + loginId+"'";
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, newpw);
+				
+				pstmt.setString(1, name);
+				pstmt.setString(2, newpw);
 				int r = pstmt.executeUpdate();
 				pstmt.close();	
 			}
